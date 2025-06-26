@@ -116,7 +116,46 @@
             </label>
           </div>
         </div>
+        <!-- Informações Adicionais -->
+        <div class="space-y-3">
+          <label for="info-adicional-plantio" class="block font-bold text-gray-700 text-2xl">
+            Informações Adicionais
+          </label>
+          <textarea
+            id="info-adicional-plantio"
+            name="info_adicional_plantio"
+            class="w-full border-2 border-gray-700 rounded-2xl p-6 text-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition"
+            rows="4"
+            placeholder="Espaço   livre para observações ou dados que o técnico quiser adicionar…"
+          ></textarea>
+        </div>
 
+        <!-- Anexar Fotos -->
+        <div class="space-y-2 mb-8">
+          <label for="anexoFotosPlantio" class="block font-bold text-gray-700 text-xl mb-2">
+            Anexar fotos (opcional):
+          </label>
+          <div class="flex flex-col items-center gap-4">
+            <label for="anexoFotosPlantio"
+              class="w-full cursor-pointer inline-flex justify-center items-center px-6 py-6 bg-green-700 hover:bg-green-800 text-white font-extrabold rounded-2xl shadow-lg transition text-2xl text-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-4" fill="none"
+                viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1
+                    M12 12v8m0-8l-4 4m4-4l4 4
+                    M4 12l4-4 4 4 4-4 4 4" />
+              </svg>
+              Selecione a(s) foto(s)
+            </label>
+            <span id="anexoFotosPlantio-nome" class="text-gray-600 italic text-lg">Nenhum arquivo selecionado</span>
+          </div>
+          <input type="file"
+            id="anexoFotosPlantio"
+            name="anexoFotosPlantio"
+            class="hidden"
+            accept="image/*"
+            multiple>
+        </div>
         <!-- Botão Enviar -->
         <div class="pt-6">
           <button type="submit"
@@ -130,5 +169,17 @@
     <footer class="text-center text-lg text-gray-500 pb-6">© 2025 Sua Empresa</footer>
   </div>
   <script src="../components/app.js"></script>
+<script>
+document.getElementById('anexoFotosPlantio').addEventListener('change', function(e) {
+  let label = document.getElementById('anexoFotosPlantio-nome');
+  if (this.files.length > 0) {
+    let nomes = Array.from(this.files).map(f => f.name).join(', ');
+    label.textContent = nomes;
+  } else {
+    label.textContent = 'Nenhum arquivo selecionado';
+  }
+});
+</script>
+
 </body>
 </html>
