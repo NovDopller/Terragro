@@ -40,6 +40,8 @@
   </div>
 
   <script>
+    const BASE_URL = "http://localhost:5000"; // Altere para o IP do servidor se não for local
+
     // Troca entre login/cadastro
     const loginForm = document.getElementById('loginForm');
     const registerForm = document.getElementById('registerForm');
@@ -59,45 +61,54 @@
     };
 
     // Cadastro
-    registerForm.onsubmit = function(e) {
+    registerForm.onsubmit = async function(e) {
       e.preventDefault();
       const user = document.getElementById('registerUser').value.trim();
       const pass = document.getElementById('registerPass').value;
       const pass2 = document.getElementById('registerPass2').value;
-      if(!user || !pass || !pass2) {
+      if (!user || !pass || !pass2) {
         document.getElementById('registerMsg').textContent = 'Preencha todos os campos.';
         return;
       }
-      if(pass !== pass2) {
+      if (pass !== pass2) {
         document.getElementById('registerMsg').textContent = 'As senhas não coincidem.';
         return;
       }
-      if(localStorage.getItem('user_' + user)) {
-        document.getElementById('registerMsg').textContent = 'Usuário já existe.';
-        return;
+      const resp = await fetch(BASE_URL + '/api/cadastrar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ usuario: user, senha: pass })
+      });
+      const data = await resp.json();
+      if (resp.ok) {
+        document.getElementById('registerMsg').textContent = 'Cadastro realizado! Agora faça login.';
+        setTimeout(() => {
+          document.getElementById('toLogin').click();
+        }, 1200);
+      } else {
+        document.getElementById('registerMsg').textContent = data.msg;
       }
-      // Salva no localStorage (NÃO usar assim em produção!)
-      localStorage.setItem('user_' + user, pass);
-      document.getElementById('registerMsg').textContent = 'Cadastro realizado! Agora faça login.';
-      setTimeout(() => {
-        document.getElementById('toLogin').click();
-      }, 1200);
     };
 
     // Login
-    loginForm.onsubmit = function(e) {
+    loginForm.onsubmit = async function(e) {
       e.preventDefault();
       const user = document.getElementById('loginUser').value.trim();
       const pass = document.getElementById('loginPass').value;
-      const saved = localStorage.getItem('user_' + user);
-      if(saved && saved === pass) {
+      const resp = await fetch(BASE_URL + '/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ usuario: user, senha: pass })
+      });
+      if (resp.ok) {
         sessionStorage.setItem('loggedIn', 'true');
         sessionStorage.setItem('loggedUser', user);
-        window.location.href = 'index.html'; // Redireciona para index.html
+        window.location.href = 'index.html';
       } else {
-        document.getElementById('loginMsg').textContent = 'Usuário ou senha inválidos!';
+        const data = await resp.json();
+        document.getElementById('loginMsg').textContent = data.msg || 'Usuário ou senha inválidos!';
       }
-    }
+    };
   </script>
 </body>
 </html>
