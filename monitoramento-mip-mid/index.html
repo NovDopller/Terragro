@@ -6,180 +6,180 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style src="../components/style.css"></style>
 </head>
-<body class="bg-gradient-to-br from-green-100 via-white to-green-200 min-h-screen flex items-center justify-center p-6">
-  <div class="w-full max-w-3xl rounded-2xl shadow-2xl bg-white/80 backdrop-blur-md border border-green-100">
+<body class="bg-gradient-to-br from-green-100 via-white to-green-200 min-h-screen flex items-center justify-center p-2">
+  <div class="w-full max-w-4xl rounded-3xl shadow-2xl bg-white/90 backdrop-blur-md border-2 border-green-200">
     <!-- Cabeçalho -->
-    <div class="bg-green-700 p-6 rounded-t-2xl relative shadow-md">
+    <div class="bg-green-700 p-8 rounded-t-3xl relative shadow-lg">
       <a href="../index.html"
-        class="absolute left-6 top-1/2 -translate-y-1/2 
-               bg-white/90 text-green-700 font-semibold px-4 py-2 rounded-lg shadow hover:bg-green-50 transition-all">
+        class="absolute left-8 top-1/2 -translate-y-1/2 
+               bg-white/90 text-green-700 font-bold px-6 py-4 rounded-xl shadow hover:bg-green-50 transition-all text-lg">
         ← Voltar
       </a>
       <div class="flex flex-col items-center">
-        <img src="../Logo.png" alt="Logo da Empresa" class="h-28 object-contain drop-shadow-xl mb-2">
-        <h2 class="text-3xl font-extrabold text-white drop-shadow mb-1">Monitoramento Mip e Mid</h2>
-        <span class="text-green-100 font-light">Informações iniciais para o monitoramento agrícola</span>
+        <img src="../Logo.png" alt="Logo da Empresa" class="h-40 object-contain drop-shadow-xl mb-4">
+        <h2 class="text-5xl font-extrabold text-white drop-shadow mb-2">Monitoramento Mip e Mid</h2>
+        <span class="text-green-100 font-light text-2xl">Informações iniciais para o monitoramento agrícola</span>
       </div>
     </div>
 
-    <!-- Formulário estilizado padrão -->
-    <div class="p-8 space-y-6">
-      <form id="mainForm" class="space-y-7">
+    <!-- Formulário estilizado ampliado e menus de borda escura -->
+    <div class="p-12 space-y-10">
+      <form id="mainForm" class="space-y-10">
         <!-- Fase da cultura -->
-        <div class="space-y-2">
-          <label for="faseCultura" class="block font-semibold text-gray-700">Em que fase se encontra a cultura?</label>
+        <div class="space-y-3">
+          <label for="faseCultura" class="block font-bold text-gray-700 text-2xl">Em que fase se encontra a cultura?</label>
           <input type="text" id="faseCultura" name="faseCultura"
-            class="w-full border rounded-xl px-3 py-2 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition"
+            class="w-full border-2 border-gray-700 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition"
             placeholder="Ex: V4, R1…">
         </div>
 
         <!-- Precipitação 7 dias -->
-        <div class="space-y-2">
-          <label for="precipitacao7d" class="block font-semibold text-gray-700">
+        <div class="space-y-3">
+          <label for="precipitacao7d" class="block font-bold text-gray-700 text-2xl">
             Precipitação calculada dos próximos 7 dias:
           </label>
-          <div class="flex items-center gap-2">
+          <div class="flex items-center gap-4">
             <input type="number" id="precipitacao7d" name="precipitacao7d"
-              class="w-32 border rounded-xl px-3 py-2 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition"
+              class="w-52 border-2 border-gray-700 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition"
               placeholder="mm">
-            <span class="text-gray-600">mm</span>
+            <span class="text-gray-600 text-lg">mm</span>
           </div>
         </div>
 
         <!-- Ciclo fenológico -->
-        <div class="space-y-2">
-          <span class="block font-semibold text-gray-700">Todo o talhão apresenta mesmo ciclo fenológico?</span>
-          <div class="flex items-center gap-6">
-            <label class="inline-flex items-center">
-              <input type="radio" name="mesmoCiclo" value="Sim" class="form-radio text-green-600">
-              <span class="ml-2">Sim</span>
+        <div class="space-y-3">
+          <span class="block font-bold text-gray-700 text-2xl">Todo o talhão apresenta mesmo ciclo fenológico?</span>
+          <div class="flex flex-wrap items-center gap-8">
+            <label class="inline-flex items-center text-xl">
+              <input type="radio" name="mesmoCiclo" value="Sim" class="form-radio text-green-600 w-7 h-7">
+              <span class="ml-3">Sim</span>
             </label>
-            <label class="inline-flex items-center">
-              <input type="radio" name="mesmoCiclo" value="Não" class="form-radio text-green-600">
-              <span class="ml-2">Não</span>
+            <label class="inline-flex items-center text-xl">
+              <input type="radio" name="mesmoCiclo" value="Não" class="form-radio text-green-600 w-7 h-7">
+              <span class="ml-3">Não</span>
             </label>
             <input type="text" name="cicloMotivo"
-              class="ml-4 border rounded-xl px-3 py-2 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition flex-1"
+              class="ml-6 border-2 border-gray-700 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition flex-1"
               placeholder="Não, o que afetou?">
           </div>
         </div>
 
         <!-- Uniformidade grãos/vagens -->
-        <div class="space-y-2">
-          <span class="block font-semibold text-gray-700">Plantas apresentam uniformidade na formação de grãos e vagens?</span>
-          <div class="flex items-center gap-6">
-            <label class="inline-flex items-center">
-              <input type="radio" name="uniformidadeGrãos" value="Uniforme" class="form-radio text-green-600">
-              <span class="ml-2">Uniforme</span>
+        <div class="space-y-3">
+          <span class="block font-bold text-gray-700 text-2xl">Plantas apresentam uniformidade na formação de grãos e vagens?</span>
+          <div class="flex flex-wrap items-center gap-8">
+            <label class="inline-flex items-center text-xl">
+              <input type="radio" name="uniformidadeGrãos" value="Uniforme" class="form-radio text-green-600 w-7 h-7">
+              <span class="ml-3">Uniforme</span>
             </label>
-            <label class="inline-flex items-center">
-              <input type="radio" name="uniformidadeGrãos" value="Desuniforme" class="form-radio text-green-600">
-              <span class="ml-2">Desuniforme</span>
+            <label class="inline-flex items-center text-xl">
+              <input type="radio" name="uniformidadeGrãos" value="Desuniforme" class="form-radio text-green-600 w-7 h-7">
+              <span class="ml-3">Desuniforme</span>
             </label>
             <input type="text" name="uniformidadeMotivo"
-              class="ml-4 border rounded-xl px-3 py-2 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition flex-1"
+              class="ml-6 border-2 border-gray-700 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition flex-1"
               placeholder="Desuniforme, por quê?">
           </div>
         </div>
 
         <!-- Vagens por planta -->
-        <div class="space-y-2">
-          <label for="vagensPorPlanta" class="block font-semibold text-gray-700">
+        <div class="space-y-3">
+          <label for="vagensPorPlanta" class="block font-bold text-gray-700 text-2xl">
             Quantidade de vagens por planta:
           </label>
           <input type="number" id="vagensPorPlanta" name="vagensPorPlanta"
-            class="w-32 border rounded-xl px-3 py-2 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition">
+            class="w-52 border-2 border-gray-700 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition">
         </div>
 
         <!-- Insetos -->
-        <div class="space-y-2">
-          <span class="block font-semibold text-gray-700">Constatação de insetos nas plantas?</span>
-          <div class="flex items-center gap-6">
-            <label class="inline-flex items-center">
-              <input type="radio" name="insetosPresentes" value="Não" class="form-radio text-green-600">
-              <span class="ml-2">Não</span>
+        <div class="space-y-3">
+          <span class="block font-bold text-gray-700 text-2xl">Constatação de insetos nas plantas?</span>
+          <div class="flex flex-wrap items-center gap-8">
+            <label class="inline-flex items-center text-xl">
+              <input type="radio" name="insetosPresentes" value="Não" class="form-radio text-green-600 w-7 h-7">
+              <span class="ml-3">Não</span>
             </label>
-            <label class="inline-flex items-center">
-              <input type="radio" name="insetosPresentes" value="Sim" class="form-radio text-green-600">
-              <span class="ml-2">Sim</span>
+            <label class="inline-flex items-center text-xl">
+              <input type="radio" name="insetosPresentes" value="Sim" class="form-radio text-green-600 w-7 h-7">
+              <span class="ml-3">Sim</span>
             </label>
             <input type="text" name="insetosQualMip"
-              class="ml-4 border rounded-xl px-3 py-2 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition flex-1"
+              class="ml-6 border-2 border-gray-700 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition flex-1"
               placeholder="Sim, qual?">
           </div>
-          <div class="flex gap-4 mt-2">
+          <div class="flex gap-8 mt-2">
             <input type="number" name="incidenciaInsetosMip"
-              class="w-52 border rounded-xl px-3 py-2 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition"
+              class="w-60 border-2 border-gray-700 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition"
               placeholder="Incidência (m²/batida)">
             <input type="number" name="urgenciaInsetosMip"
-              class="w-44 border rounded-xl px-3 py-2 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition"
+              class="w-56 border-2 border-gray-700 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition"
               placeholder="Urgência (1–5)" min="1" max="5">
           </div>
         </div>
 
         <!-- Plantas daninhas -->
-        <div class="space-y-2">
-          <span class="block font-semibold text-gray-700">Presença de plantas daninhas?</span>
-          <div class="flex items-center gap-6">
-            <label class="inline-flex items-center">
-              <input type="radio" name="daninhasPresentesMip" value="Não" class="form-radio text-green-600">
-              <span class="ml-2">Não</span>
+        <div class="space-y-3">
+          <span class="block font-bold text-gray-700 text-2xl">Presença de plantas daninhas?</span>
+          <div class="flex flex-wrap items-center gap-8">
+            <label class="inline-flex items-center text-xl">
+              <input type="radio" name="daninhasPresentesMip" value="Não" class="form-radio text-green-600 w-7 h-7">
+              <span class="ml-3">Não</span>
             </label>
-            <label class="inline-flex items-center">
-              <input type="radio" name="daninhasPresentesMip" value="Sim" class="form-radio text-green-600">
-              <span class="ml-2">Sim</span>
+            <label class="inline-flex items-center text-xl">
+              <input type="radio" name="daninhasPresentesMip" value="Sim" class="form-radio text-green-600 w-7 h-7">
+              <span class="ml-3">Sim</span>
             </label>
             <input type="text" name="daninhasQualMip"
-              class="ml-4 border rounded-xl px-3 py-2 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition flex-1"
+              class="ml-6 border-2 border-gray-700 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition flex-1"
               placeholder="Sim, qual?">
           </div>
-          <div class="flex gap-4 mt-2">
+          <div class="flex gap-8 mt-2">
             <input type="number" name="incidenciaDaninhasMip"
-              class="w-52 border rounded-xl px-3 py-2 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition"
+              class="w-60 border-2 border-gray-700 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition"
               placeholder="Incidência (m²)">
             <input type="number" name="urgenciaDaninhasMip"
-              class="w-44 border rounded-xl px-3 py-2 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition"
+              class="w-56 border-2 border-gray-700 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition"
               placeholder="Urgência (1–5)" min="1" max="5">
           </div>
         </div>
 
         <!-- Doenças -->
-        <div class="space-y-2">
-          <span class="block font-semibold text-gray-700">Presença de doenças nas plantas?</span>
-          <div class="flex items-center gap-6">
-            <label class="inline-flex items-center">
-              <input type="radio" name="doencasPresentesMip" value="Não" class="form-radio text-green-600">
-              <span class="ml-2">Não</span>
+        <div class="space-y-3">
+          <span class="block font-bold text-gray-700 text-2xl">Presença de doenças nas plantas?</span>
+          <div class="flex flex-wrap items-center gap-8">
+            <label class="inline-flex items-center text-xl">
+              <input type="radio" name="doencasPresentesMip" value="Não" class="form-radio text-green-600 w-7 h-7">
+              <span class="ml-3">Não</span>
             </label>
-            <label class="inline-flex items-center">
-              <input type="radio" name="doencasPresentesMip" value="Sim" class="form-radio text-green-600">
-              <span class="ml-2">Sim</span>
+            <label class="inline-flex items-center text-xl">
+              <input type="radio" name="doencasPresentesMip" value="Sim" class="form-radio text-green-600 w-7 h-7">
+              <span class="ml-3">Sim</span>
             </label>
             <input type="text" name="doencasQualMip"
-              class="ml-4 border rounded-xl px-3 py-2 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition flex-1"
+              class="ml-6 border-2 border-gray-700 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition flex-1"
               placeholder="Sim, qual?">
           </div>
-          <div class="flex gap-4 mt-2">
+          <div class="flex gap-8 mt-2">
             <input type="number" name="incidenciaDoencasMip"
-              class="w-52 border rounded-xl px-3 py-2 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition"
+              class="w-60 border-2 border-gray-700 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition"
               placeholder="Incidência (m²)">
             <input type="number" name="urgenciaDoencasMip"
-              class="w-44 border rounded-xl px-3 py-2 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition"
+              class="w-56 border-2 border-gray-700 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition"
               placeholder="Urgência (1–5)" min="1" max="5">
           </div>
         </div>
 
         <!-- Enviar -->
-        <div class="pt-4">
+        <div class="pt-6">
           <button type="submit"
-            class="w-full bg-green-700 hover:bg-green-800 text-white font-bold py-3 rounded-xl shadow-lg text-lg transition-all">
+            class="w-full bg-green-700 hover:bg-green-800 text-white font-extrabold py-6 rounded-2xl shadow-xl text-2xl transition-all">
             Enviar
           </button>
         </div>
       </form>
-      <div id="messageContainer" class="mt-6 mx-auto max-w-xl"></div>
+      <div id="messageContainer" class="mt-10 mx-auto max-w-2xl text-xl"></div>
     </div>
-    <footer class="text-center text-xs text-gray-500 pb-3">© 2025 Sua Empresa</footer>
+    <footer class="text-center text-lg text-gray-500 pb-6">© 2025 Sua Empresa</footer>
   </div>
   <script src="../components/app.js" defer></script>
 </body>
