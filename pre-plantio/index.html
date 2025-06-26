@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Pré-Plantio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style src="../components/style.css"></style>
+</head>
+<body class="bg-gradient-to-br from-green-100 via-white to-green-200 min-h-screen flex items-center justify-center p-6">
+  <div class="w-full max-w-3xl rounded-2xl shadow-2xl bg-white/80 backdrop-blur-md border border-green-100">
+    <!-- Cabeçalho -->
+    <div class="bg-green-700 p-6 rounded-t-2xl relative shadow-md">
+      <a href="../index.html"
+        class="absolute left-6 top-1/2 -translate-y-1/2 
+               bg-white/90 text-green-700 font-semibold px-4 py-2 rounded-lg shadow hover:bg-green-50 transition-all">
+        ← Voltar
+      </a>
+      <div class="flex flex-col items-center">
+        <img src="../Logo.png" alt="Logo da Empresa" class="h-28 object-contain drop-shadow-xl mb-2">
+        <h2 class="text-3xl font-extrabold text-white drop-shadow mb-1">Pré-Plantio</h2>
+        <span class="text-green-100 font-light">Informações iniciais para o monitoramento agrícola</span>
+      </div>
+    </div>
+
+    <div class="p-8 space-y-6">
+      <form id="mainForm" class="space-y-7">
+        <!-- Área total do talhão -->
+                <div class="space-y-2">
+          <span class="font-semibold text-gray-700">Será plantada a área total do talhão?</span>
+          <div class="flex items-center space-x-6">
+            <label class="inline-flex items-center">
+              <input type="radio" name="areaTotalTalhao" value="Sim" class="form-radio text-green-600">
+              <span class="ml-2">Sim</span>
+            </label>
+            <label class="inline-flex items-center">
+              <input type="radio" name="areaTotalTalhao" value="Não" class="form-radio text-green-600">
+              <span class="ml-2">Não</span>
+            </label>
+            <!-- container oculto por padrão -->
+            <div id="hectaresContainer" class="hidden flex items-center space-x-2 ml-auto">
+              <input
+                type="number"
+                name="hectaresPlantadosPP"
+                placeholder="0,00"
+                step="0.01"
+                class="w-24 border rounded-xl px-3 py-2 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition"
+              >
+              <span class="text-gray-700">ha</span>
+            </div>
+          </div>
+        </div>
+        <!-- Cultura a ser implantada -->
+        <div class="space-y-2">
+          <label for="culturaPP" class="block font-semibold text-gray-700">Cultura a ser implantada:</label>
+          <select id="culturaPP" name="culturaPP"
+            class="w-full border rounded-xl px-3 py-2 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition">
+            <option selected hidden>Selecione</option>
+            <option>Soja</option>
+            <option>Milho</option>
+            <option>Feijão</option>
+            <option>Trigo</option>
+            <option>Sorgo</option>
+            <option>Aveia</option>
+            <option>Azevém</option>
+          </select>
+        </div>
+
+        <!-- Variedade da Cultura -->
+        <div class="space-y-2">
+          <label for="variedadePP" class="block font-semibold text-gray-700">
+            Variedade da Cultura:
+          </label>
+          <textarea
+            id="variedadePP"
+            name="variedadePP"
+            rows="1"
+            placeholder="Informe a variedade da cultura…"
+            class="auto-expand resize-none overflow-hidden w-full border rounded-xl px-3 py-2 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition"
+          ></textarea>
+        </div>
+        <!-- PMS da cultura -->
+        <div class="space-y-2">
+          <label for="pmsPP" class="block font-semibold text-gray-700">PMS da cultura (g):</label>
+          <input type="number" id="pmsPP" name="pmsPP" step="0.01"
+            class="w-full border rounded-xl px-3 py-2 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition">
+        </div>
+
+        <!-- Data prevista para plantio -->
+        <div class="space-y-2">
+          <label for="dataPrevPlantioPP" class="block font-semibold text-gray-700">Data prevista para o plantio:</label>
+          <input type="date" id="dataPrevPlantioPP" name="dataPrevPlantioPP"
+            class="w-full border rounded-xl px-3 py-2 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition">
+        </div>
+
+        <!-- Última análise de solo -->
+        <div class="space-y-2">
+          <label for="dataUltAnaliseSoloPP" class="block font-semibold text-gray-700">Quando foi feita a última análise de solo?</label>
+          <input type="date" id="dataUltAnaliseSoloPP" name="dataUltAnaliseSoloPP"
+            class="w-full border rounded-xl px-3 py-2 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition">
+        </div>
+
+        <!-- Anexo da análise de solo (opcional) -->
+        <div class="space-y-2">
+          <label for="anexoAnaliseSoloPP" class="block font-semibold text-gray-700 mb-2">
+            Anexo da análise de solo (opcional):
+          </label>
+          <div class="flex items-center space-x-4">
+            <label for="anexoAnaliseSoloPP"
+              class="cursor-pointer inline-flex items-center px-4 py-2 bg-green-600 text-white font-medium rounded-xl shadow hover:bg-green-700 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1
+                        M12 12v8m0-8l-4 4m4-4l4 4
+                        M4 12l4-4 4 4 4-4 4 4" />
+              </svg>
+              Selecione a foto
+            </label>
+            <span id="anexo-nome" class="text-gray-600 italic">Nenhum arquivo selecionado</span>
+          </div>
+          <!-- Só imagens agora -->
+          <input type="file"
+                id="anexoAnaliseSoloPP"
+                name="anexoAnaliseSoloPP"
+                class="hidden"
+                accept="image/*">
+        </div>
+
+        <!-- Calagem prevista/realizada -->
+        <!-- Pergunta de dosagem -->
+        <div class="space-y-2">
+          <span class="font-semibold text-gray-700">Dosagem de calagem aplicada?</span>
+          <div class="flex items-center space-x-6">
+            <label class="inline-flex items-center">
+              <input type="radio" name="dosagemCalagemPP" value="Sim" class="form-radio text-green-600">
+              <span class="ml-2">Sim</span>
+            </label>
+            <label class="inline-flex items-center">
+              <input type="radio" name="dosagemCalagemPP" value="Não" class="form-radio text-green-600">
+              <span class="ml-2">Não</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Container de Calagem, oculto por padrão -->
+        <div id="calagemContainer" class="hidden space-y-2">
+          <label for="calagemPP" class="block font-semibold text-gray-700">
+            Calagem prevista/realizada:
+          </label>
+          <div class="flex items-center space-x-2">
+            <input
+              type="number"
+              id="calagemPP"
+              name="calagemPP"
+              placeholder="0,00"
+              step="0.01"
+              class="w-24 border rounded-xl px-3 py-2 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition"
+            >
+            <span class="text-gray-700">kg/ha</span>
+          </div>
+        </div>
+
+
+        <!-- Histórico de solo -->
+        <div class="space-y-2">
+          <label for="historicoSoloPP" class="block font-semibold text-gray-700">
+            Histórico de compactação ou drenagem:
+          </label>
+          <textarea
+            id="historicoSoloPP"
+            name="historicoSoloPP"
+            rows="1"
+            placeholder="Descreva o histórico de compactação ou drenagem do solo…"
+            class="auto-expand resize-none overflow-hidden w-full border rounded-xl px-3 py-2 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition"
+          ></textarea>
+        </div>
+
+        <!-- Adubação anos anteriores -->
+        <div class="space-y-2">
+          <label for="adubosAnterioresPP" class="block font-semibold text-gray-700">
+            Quais adubos foram utilizados nos anos anteriores?
+          </label>
+          <textarea
+            id="adubosAnterioresPP"
+            name="adubosAnterioresPP"
+            rows="1"
+            placeholder="Descreva os adubos utilizados nos anos anteriores…"
+            class="auto-expand resize-none overflow-hidden w-full border rounded-xl px-3 py-2 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition"
+          ></textarea>
+        </div>
+
+        <!-- Adubação ano presente -->
+        <div class="space-y-2">
+          <label for="adubacaoAnoPP" class="block font-semibold text-gray-700">
+            Qual adubação está planejada/realizada neste ano?
+          </label>
+          <textarea
+            id="adubacaoAnoPP"
+            name="adubacaoAnoPP"
+            rows="1"
+            placeholder="Digite aqui a adubação deste ano…"
+            class="auto-expand resize-none overflow-hidden w-full border rounded-xl px-3 py-2 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition"
+          ></textarea>
+        </div>
+
+
+                <!-- Constatação de insetos -->
+        <div class="space-y-2">
+          <span class="font-semibold text-gray-700">Constatada presença de insetos?</span>
+
+          <!-- Radios sempre visíveis -->
+          <div class="flex items-center space-x-6">
+            <label class="inline-flex items-center">
+              <input type="radio" name="insetosPP" value="Não" class="form-radio text-green-600">
+              <span class="ml-2">Não</span>
+            </label>
+            <label class="inline-flex items-center">
+              <input type="radio" name="insetosPP" value="Sim" class="form-radio text-green-600">
+              <span class="ml-2">Sim</span>
+            </label>
+          </div>
+
+          <!-- Detalhes só aparecem se "Sim" estiver marcado -->
+          <div id="insetos-detalhes" class="space-y-4 hidden">
+            <!-- Qual inseto? -->
+            <div>
+              <label for="insetosQualPP" class="block font-semibold text-gray-700 mb-2">Qual inseto?</label>
+              <select id="insetosQualPP" name="insetosQualPP"
+                class="w-full border rounded-xl px-3 py-2 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition">
+                <option selected hidden>Selecione o inseto</option>
+                <option>Lagarta</option>
+                <option>Percevejo</option>
+                <option>Pulgão</option>
+                <option>Mosca-branca</option>
+                <option>Trips</option>
+              </select>
+            </div>
+
+            <!-- Incidência e Urgência -->
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label for="incidenciaInsetosPP" class="block text-gray-600">Incidência (m²/pano):</label>
+                <input type="number" id="incidenciaInsetosPP" name="incidenciaInsetosPP" step="0.01"
+                  class="w-full border rounded-xl px-3 py-2 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition">
+              </div>
+              <div>
+                <label for="urgenciaInsetosPP" class="block text-gray-600">Urgência (1–5):</label>
+                <select id="urgenciaInsetosPP" name="urgenciaInsetosPP"
+                  class="w-full border rounded-xl px-3 py-2 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition">
+                  <option selected hidden>Selecione a urgência</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+                <!-- Constatação de plantas daninhas -->
+        <div class="space-y-2">
+          <span class="font-semibold text-gray-700">Constatada presença de plantas daninhas?</span>
+
+          <!-- Radios sempre visíveis -->
+          <div class="flex items-center space-x-6">
+            <label class="inline-flex items-center">
+              <input type="radio" name="daninhasPP" value="Não" class="form-radio text-green-600">
+              <span class="ml-2">Não</span>
+            </label>
+            <label class="inline-flex items-center">
+              <input type="radio" name="daninhasPP" value="Sim" class="form-radio text-green-600">
+              <span class="ml-2">Sim</span>
+            </label>
+          </div>
+
+          <!-- Detalhes só aparecem se "Sim" estiver marcado -->
+          <div id="daninhas-detalhes" class="space-y-4 hidden">
+            <!-- Qual planta daninha? -->
+            <div>
+              <label for="daninhasQualPP" class="block font-semibold text-gray-700 mb-2">Qual planta daninha?</label>
+              <select id="daninhasQualPP" name="daninhasQualPP"
+                class="w-full border rounded-xl px-3 py-2 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition">
+                <option selected hidden>Selecione a planta daninha</option>
+                <option>Buva</option>
+                <option>Picão-preto</option>
+                <option>Capim-colchão</option>
+                <option>Trapoeraba</option>
+                <option>Caruru</option>
+              </select>
+            </div>
+
+            <!-- Incidência e Urgência -->
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label for="incidenciaDaninhasPP" class="block text-gray-600">Incidência (m²):</label>
+                <input type="number" id="incidenciaDaninhasPP" name="incidenciaDaninhasPP" step="0.01"
+                  class="w-full border rounded-xl px-3 py-2 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition">
+              </div>
+              <div>
+                <label for="urgenciaDaninhasPP" class="block text-gray-600">Urgência (1–5):</label>
+                <select id="urgenciaDaninhasPP" name="urgenciaDaninhasPP"
+                  class="w-full border rounded-xl px-3 py-2 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition">
+                  <option selected hidden>Selecione a urgência</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <fieldset class=" rounded-lg p-4 mb-6">
+  <legend class="font-semibold px-2">Informações Adicionais</legend>
+  <textarea
+    id="info-adicional"
+    name="info_adicional"
+    class="auto-expand p-2 border rounded w-full"
+    rows="3"
+    placeholder="Espaço livre para observações ou dados que o técnico quiser adicionar…"
+  ></textarea>
+</fieldset>
+
+        <!-- Botão Enviar -->
+        <div class="pt-4">
+          <button type="submit"
+            class="w-full bg-green-700 hover:bg-green-800 text-white font-bold py-3 rounded-xl shadow-lg text-lg transition-all">
+            Enviar
+          </button>
+        </div>
+      </form>
+
+      <!-- Mensagem e Relatório centralizados -->
+      <div id="messageContainer" class="mt-6 mx-auto max-w-xl"></div>
+    </div>
+    <footer class="text-center text-xs text-gray-500 pb-3">© 2025 Sua Empresa</footer>
+  </div>
+  <script src="../components/app.js"></script>
+  <script src="../pre-plantio/pre-plantio.js" defer></script>
+</body>
+</html>
+

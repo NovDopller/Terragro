@@ -1,0 +1,28 @@
+
+body { background: #f8f9fa; margin:0; padding:0; 
+}
+
+.container { max-width:900px; margin:40px auto; background:#fff; padding:30px; border-radius:8px; 
+}
+
+nav a { margin-right:15px; 
+}
+
+.mb-3 .form-label { font-weight:600; 
+}
+
+textarea {
+width: 100%;
+box-sizing: border-box;    /* Para considerar padding na largura total */
+resize: none;                 /* Remove alça de redimensionamento manual */
+overflow: hidden;          /* Esconde barra de rolagem vertical */
+}
+
+textarea.auto-expand {
+  min-height: 4rem;   /* ajusta conforme desejar (ex: 4rem ≈ 64px) */
+}
+
+@media (max-width: 640px) {
+  html { font-size: 20px; }
+  input, button, label { font-size: 1.125rem; }
+}

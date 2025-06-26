@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Menu Principal - Relatório Agronômico</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen flex items-center justify-center p-4">
+  <!-- Grande container branco -->
+  <div class="w-full max-w-md bg-white rounded-lg shadow-lg p-6 space-y-6">
+    <!-- Logo centralizado -->
+    <div class="flex justify-center mb-4">
+      <img src="Logo.png" alt="Logo da Empresa" class="h-28 object-contain">
+    </div>
+
+    <!-- Relatório salvo (se houver) -->
+    <div id="reportContainer"></div>
+
+    <!-- Botões organizados verticalmente -->
+    <div class="flex flex-col gap-4">
+      <a href="pre-plantio/index.html"
+         class="block bg-green-600 hover:bg-green-700 text-white font-semibold 
+                rounded-lg py-3 text-center transition">
+        Pré-Plantio
+      </a>
+      <a href="plantio/index.html"
+         class="block bg-green-600 hover:bg-green-700 text-white font-semibold 
+                rounded-lg py-3 text-center transition">
+        Plantio
+      </a>
+      <a href="contagem-estande/index.html"
+         class="block bg-green-600 hover:bg-green-700 text-white font-semibold 
+                rounded-lg py-3 text-center transition">
+        Contagem de Estande
+      </a>
+      <a href="monitoramento-mip-mid/index.html"
+         class="block bg-green-600 hover:bg-green-700 text-white font-semibold 
+                rounded-lg py-3 text-center transition">
+        Monitoramento MIP/MID
+      </a>
+      <a href="pre-colheita/index.html"
+         class="block bg-green-600 hover:bg-green-700 text-white font-semibold 
+                rounded-lg py-3 text-center transition">
+        Pré-Colheita
+      </a>
+    </div>
+  </div>
+  <!-- Script para exibir relatório salvo -->
+<!-- Relatório Final: injeta o HTML salvo em localStorage -->
+    <script>
+      const report = localStorage.getItem('lastReport');
+      if (report) {
+        document.getElementById('reportContainer').innerHTML = report;
+        localStorage.removeItem('lastReport');
+      }
+    </script>
+</body>
+</html>
