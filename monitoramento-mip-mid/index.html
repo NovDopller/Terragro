@@ -6,6 +6,12 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style src="../components/style.css"></style>
 </head>
+<script>
+  if (sessionStorage.getItem('loggedIn') !== 'true') {
+    window.location.href = "login.html";
+  }
+</script>
+
 <body class="bg-gradient-to-br from-green-100 via-white to-green-200 min-h-screen flex items-center justify-center p-2">
   <div class="w-full max-w-4xl rounded-3xl shadow-2xl bg-white/90 backdrop-blur-md border-2 border-green-200">
     <!-- Cabeçalho -->
@@ -278,7 +284,7 @@
       </form>
       <div id="messageContainer" class="mt-10 mx-auto max-w-2xl text-xl"></div>
     </div>
-    <footer class="text-center text-lg text-gray-500 pb-6">© 2025 Sua Empresa</footer>
+    <footer class="text-center text-lg text-gray-500 pb-6">© 2025 TERRAGRICOLA COMERCIO DE FERTILIZANTES LTDA</footer>
   </div>
   <script src="../components/app.js" defer></script>
   <script>
