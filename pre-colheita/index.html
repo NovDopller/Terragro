@@ -25,172 +25,201 @@
     <!-- Formulário estilizado padrão ampliado e bordas escuras -->
     <div class="p-12 space-y-10">
       <form id="mainForm" class="space-y-10">
+
         <!-- 1. Em que condições se encontra a lavoura? -->
-        <div class="space-y-3">
-          <label class="block font-bold text-gray-700 text-2xl">Em que condições se encontra a lavoura?</label>
+        <div class="bg-white rounded-2xl shadow p-6">
+          <label class="block font-bold text-gray-700 text-2xl mb-4">Em que condições se encontra a lavoura?</label>
           <input type="text" name="condicao_lavoura" class="w-full border-2 border-gray-700 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition">
         </div>
 
         <!-- 2. A lavoura necessita de dessecação? -->
-        <div class="space-y-3">
-          <label class="block font-bold text-gray-700 text-2xl">A lavoura necessita de dessecação?</label>
-          <div class="flex flex-wrap items-center gap-8">
+        <div class="bg-white rounded-2xl shadow p-6">
+          <label class="block font-bold text-gray-700 text-2xl mb-4">A lavoura necessita de dessecação?</label>
+          <div class="grid grid-cols-2 gap-4 mb-4">
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="dessecacao" value="Não" class="form-radio text-green-600 w-7 h-7">
+              <input type="radio" name="dessecacao" value="Não" class="form-radio text-green-600 w-6 h-6">
               <span class="ml-3">Não</span>
             </label>
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="dessecacao" value="Sim" class="form-radio text-green-600 w-7 h-7">
+              <input type="radio" name="dessecacao" value="Sim" class="form-radio text-green-600 w-6 h-6">
               <span class="ml-3">Sim</span>
             </label>
           </div>
-          <input type="text" name="dessecacao_motivo" class="w-full border-2 border-gray-700 rounded-2xl px-6 py-4 mt-2 text-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition" placeholder="Por quê? (se sim)">
+          <input type="text" name="dessecacao_motivo" class="w-full border-2 border-gray-700 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition" placeholder="Por quê? (se sim)">
         </div>
 
         <!-- 3. Uniformidade de maturação -->
-        <div class="space-y-3">
-          <label class="block font-bold text-gray-700 text-2xl">A lavoura apresenta uniformidade de maturação?</label>
-          <div class="flex flex-wrap items-center gap-8">
+        <div class="bg-white rounded-2xl shadow p-6">
+          <label class="block font-bold text-gray-700 text-2xl mb-4">A lavoura apresenta uniformidade de maturação?</label>
+          <div class="grid grid-cols-2 gap-4">
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="uniformidade" value="Desuniforme" class="form-radio text-green-600 w-7 h-7">
+              <input type="radio" name="uniformidade" value="Desuniforme" class="form-radio text-green-600 w-6 h-6">
               <span class="ml-3">Desuniforme</span>
             </label>
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="uniformidade" value="Uniforme" class="form-radio text-green-600 w-7 h-7">
+              <input type="radio" name="uniformidade" value="Uniforme" class="form-radio text-green-600 w-6 h-6">
               <span class="ml-3">Uniforme</span>
             </label>
           </div>
         </div>
 
         <!-- 4. Condição das vagens/espigas -->
-        <div class="space-y-3">
-          <label class="block font-bold text-gray-700 text-2xl">Condição das vagens/espigas</label>
-          <div class="flex flex-wrap gap-x-8 gap-y-3">
+        <div class="bg-white rounded-2xl shadow p-6">
+          <label class="block font-bold text-gray-700 text-2xl mb-4">Condição das vagens/espigas</label>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <label class="inline-flex items-center text-xl">
-              <input type="checkbox" name="cond_vagem[]" value="Bem formadas" class="form-checkbox text-green-600 w-7 h-7">
+              <input type="radio" name="cond_vagem" value="Bem formadas" class="form-radio text-green-600 w-6 h-6">
               <span class="ml-3">Bem formadas</span>
             </label>
             <label class="inline-flex items-center text-xl">
-              <input type="checkbox" name="cond_vagem[]" value="Com falhas" class="form-checkbox text-green-600 w-7 h-7">
+              <input type="radio" name="cond_vagem" value="Com falhas" class="form-radio text-green-600 w-6 h-6">
               <span class="ml-3">Com falhas</span>
             </label>
             <label class="inline-flex items-center text-xl">
-              <input type="checkbox" name="cond_vagem[]" value="Com ataque de pragas" class="form-checkbox text-green-600 w-7 h-7">
+              <input type="radio" name="cond_vagem" value="Com ataque de pragas" class="form-radio text-green-600 w-6 h-6">
               <span class="ml-3">Com ataque de pragas</span>
             </label>
             <label class="inline-flex items-center text-xl">
-              <input type="checkbox" name="cond_vagem[]" value="Com sinais de doenças" class="form-checkbox text-green-600 w-7 h-7">
+              <input type="radio" name="cond_vagem" value="Com sinais de doenças" class="form-radio text-green-600 w-6 h-6">
               <span class="ml-3">Com sinais de doenças</span>
             </label>
           </div>
         </div>
 
         <!-- 5. Grãos ardidos, chochos ou danos -->
-        <div class="space-y-3">
-          <label class="block font-bold text-gray-700 text-2xl">Grãos com presença de ardidos, chochos ou com danos?</label>
-          <div class="flex flex-wrap gap-x-8 gap-y-3">
+        <div class="bg-white rounded-2xl shadow p-6">
+          <label class="block font-bold text-gray-700 text-2xl mb-4">Grãos com presença de ardidos, chochos ou com danos?</label>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="graos_problema" value="Não identificado" class="form-radio text-green-600 w-7 h-7">
+              <input type="radio" name="graos_problema" value="Não identificado" class="form-radio text-green-600 w-6 h-6">
               <span class="ml-3">Não identificado</span>
             </label>
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="graos_problema" value="Baixa Incidência" class="form-radio text-green-600 w-7 h-7">
+              <input type="radio" name="graos_problema" value="Baixa Incidência" class="form-radio text-green-600 w-6 h-6">
               <span class="ml-3">Baixa Incidência</span>
             </label>
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="graos_problema" value="Média Incidência" class="form-radio text-green-600 w-7 h-7">
+              <input type="radio" name="graos_problema" value="Média Incidência" class="form-radio text-green-600 w-6 h-6">
               <span class="ml-3">Média Incidência</span>
             </label>
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="graos_problema" value="Alta Incidência" class="form-radio text-green-600 w-7 h-7">
+              <input type="radio" name="graos_problema" value="Alta Incidência" class="form-radio text-green-600 w-6 h-6">
               <span class="ml-3">Alta Incidência</span>
             </label>
           </div>
         </div>
 
         <!-- 6. Teor de umidade aparente no grão -->
-        <div class="space-y-3">
-          <label class="block font-bold text-gray-700 text-2xl">Teor de umidade aparente no grão:</label>
-          <div class="flex flex-wrap items-center gap-8">
+        <div class="bg-white rounded-2xl shadow p-6">
+          <label class="block font-bold text-gray-700 text-2xl mb-4">Teor de umidade aparente no grão:</label>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="umidade_grao" value="Média" class="form-radio text-green-600 w-7 h-7">
+              <input type="radio" name="umidade_grao" value="Média" class="form-radio text-green-600 w-6 h-6">
               <span class="ml-3">Média</span>
             </label>
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="umidade_grao" value="Baixa (Visual seco)" class="form-radio text-green-600 w-7 h-7">
+              <input type="radio" name="umidade_grao" value="Baixa (Visual seco)" class="form-radio text-green-600 w-6 h-6">
               <span class="ml-3">Baixa (Visual seco)</span>
             </label>
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="umidade_grao" value="Alta (Risco de perda)" class="form-radio text-green-600 w-7 h-7">
+              <input type="radio" name="umidade_grao" value="Alta (Risco de perda)" class="form-radio text-green-600 w-6 h-6">
               <span class="ml-3">Alta (Risco de perda)</span>
             </label>
           </div>
         </div>
 
         <!-- 7. Risco de perda por chuva ou abertura das vagens -->
-        <div class="space-y-3">
-          <label class="block font-bold text-gray-700 text-2xl">Risco de perda por chuva ou por abertura das vagens?</label>
-          <div class="flex flex-wrap items-center gap-8">
+        <div class="bg-white rounded-2xl shadow p-6">
+          <label class="block font-bold text-gray-700 text-2xl mb-4">Risco de perda por chuva ou por abertura das vagens?</label>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="risco_perda" value="Baixo" class="form-radio text-green-600 w-7 h-7">
+              <input type="radio" name="risco_perda" value="Baixo" class="form-radio text-green-600 w-6 h-6">
               <span class="ml-3">Baixo</span>
             </label>
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="risco_perda" value="Moderado" class="form-radio text-green-600 w-7 h-7">
+              <input type="radio" name="risco_perda" value="Moderado" class="form-radio text-green-600 w-6 h-6">
               <span class="ml-3">Moderado</span>
             </label>
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="risco_perda" value="Alto" class="form-radio text-green-600 w-7 h-7">
+              <input type="radio" name="risco_perda" value="Alto" class="form-radio text-green-600 w-6 h-6">
               <span class="ml-3">Alto</span>
             </label>
           </div>
         </div>
 
         <!-- 8. Plantas daninhas -->
-        <div class="space-y-3">
-          <label class="block font-bold text-gray-700 text-2xl">Constatada a presença de plantas daninhas?</label>
-          <div class="flex flex-wrap items-center gap-8">
+        <div class="bg-white rounded-2xl shadow p-6">
+          <label class="block font-bold text-gray-700 text-2xl mb-4">Constatada a presença de plantas daninhas?</label>
+          <div class="grid grid-cols-2 gap-4">
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="daninhas" value="Não" class="form-radio text-green-600 w-7 h-7">
+              <input type="radio" name="daninhas" value="Não" class="form-radio text-green-600 w-6 h-6">
               <span class="ml-3">Não</span>
             </label>
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="daninhas" value="Sim" class="form-radio text-green-600 w-7 h-7">
+              <input type="radio" name="daninhas" value="Sim" class="form-radio text-green-600 w-6 h-6">
               <span class="ml-3">Sim</span>
             </label>
           </div>
-          <input type="text" name="qual_daninha" class="w-full border-2 border-gray-700 rounded-2xl px-6 py-4 mt-2 text-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition" placeholder="Qual? (se sim)">
-          <input type="number" name="incidencia_daninha" class="w-full border-2 border-gray-700 rounded-2xl px-6 py-4 mt-2 text-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition" placeholder="Incidência por m²">
-          <label class="block font-bold text-gray-700 text-xl mt-2">Nível de urgência de aplicação (1 a 5):</label>
-          <input type="number" min="1" max="5" name="nivel_urgencia_daninha" class="w-full border-2 border-gray-700 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition" placeholder="1 (menor) a 5 (maior)">
+          <div id="daninhas-detalhes" class="space-y-6 hidden mt-6">
+            <div>
+              <label for="daninhasQual" class="block font-bold text-gray-700 mb-3 text-2xl">Qual planta daninha?</label>
+              <input
+                type="text"
+                id="daninhasQual"
+                name="daninhasQual"
+                class="w-full border-2 border-gray-700 rounded-2xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition text-lg"
+                placeholder="Descreva a(s) planta(s) daninha(s) encontrada(s)">
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label for="incidenciaDaninhas" class="block text-gray-600 text-lg">Incidência (m²):</label>
+                <input type="number" id="incidenciaDaninhas" name="incidenciaDaninhas" step="0.01"
+                  class="w-full border-2 border-gray-700 rounded-2xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition text-lg"
+                  placeholder="ex: 0.5">
+              </div>
+              <div>
+                <label for="urgenciaDaninhas" class="block text-gray-600 text-lg">Urgência (1–5):</label>
+                <select id="urgenciaDaninhas" name="urgenciaDaninhas"
+                  class="w-full border-2 border-gray-700 rounded-2xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition text-lg">
+                  <option selected hidden>Selecione a urgência</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- 9. Estimativa de produtividade -->
-        <div class="space-y-3">
-          <label class="block font-bold text-gray-700 text-2xl">Estimativa de produtividade por ha:</label>
-          <div class="flex flex-wrap gap-x-8 gap-y-3">
+        <div class="bg-white rounded-2xl shadow p-6">
+          <label class="block font-bold text-gray-700 text-2xl mb-4">Estimativa de produtividade por ha:</label>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="produtividade" value="Abaixo de 40 sc/ha" class="form-radio text-green-600 w-7 h-7">
+              <input type="radio" name="produtividade" value="Abaixo de 40 sc/ha" class="form-radio text-green-600 w-6 h-6">
               <span class="ml-3">Abaixo de 40 sc/ha</span>
             </label>
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="produtividade" value="40-60 sc/ha" class="form-radio text-green-600 w-7 h-7">
+              <input type="radio" name="produtividade" value="40-60 sc/ha" class="form-radio text-green-600 w-6 h-6">
               <span class="ml-3">40-60 sc/ha</span>
             </label>
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="produtividade" value="60-80 sc/ha" class="form-radio text-green-600 w-7 h-7">
+              <input type="radio" name="produtividade" value="60-80 sc/ha" class="form-radio text-green-600 w-6 h-6">
               <span class="ml-3">60-80 sc/ha</span>
             </label>
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="produtividade" value="Outra" class="form-radio text-green-600 w-7 h-7">
+              <input type="radio" name="produtividade" value="Outra" class="form-radio text-green-600 w-6 h-6">
               <span class="ml-3">Outra:</span>
               <input type="text" name="produtividade_outra" class="ml-3 w-44 border-2 border-gray-700 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition" placeholder="Digite o valor">
             </label>
           </div>
         </div>
+
         <!-- Informações Adicionais + Anexo (Pré-Colheita) -->
-        <div class="space-y-3">
-          <label for="info-adicional-precolheita" class="block font-bold text-gray-700 text-2xl">
+        <div class="bg-white rounded-2xl shadow p-6">
+          <label for="info-adicional-precolheita" class="block font-bold text-gray-700 text-2xl mb-4">
             Informações Adicionais
           </label>
           <textarea
@@ -201,7 +230,9 @@
             placeholder="Espaço livre para observações ou dados que o técnico quiser adicionar…"
           ></textarea>
         </div>
-        <div class="space-y-2 mb-8">
+        
+        <!-- Anexo -->
+        <div class="bg-white rounded-2xl shadow p-6 mb-8">
           <label for="anexoPreColheita" class="block font-bold text-gray-700 text-xl mb-2">
             Anexar arquivo (opcional):
           </label>
@@ -226,6 +257,7 @@
             accept="image/*,application/pdf"
             multiple>
         </div>
+
         <!-- Botão Enviar -->
         <div class="pt-6">
           <button type="submit"
@@ -239,16 +271,32 @@
     <footer class="text-center text-lg text-gray-500 pb-6">© 2025 Sua Empresa</footer>
   </div>
   <script src="../components/app.js"></script>
-<script>
-document.getElementById('anexoPreColheita').addEventListener('change', function(e) {
-  let label = document.getElementById('anexoPreColheita-nome');
-  if (this.files.length > 0) {
-    let nomes = Array.from(this.files).map(f => f.name).join(', ');
-    label.textContent = nomes;
-  } else {
-    label.textContent = 'Nenhum arquivo selecionado';
-  }
-});
-</script>
+  <script>
+    document.getElementById('anexoPreColheita').addEventListener('change', function(e) {
+      let label = document.getElementById('anexoPreColheita-nome');
+      if (this.files.length > 0) {
+        let nomes = Array.from(this.files).map(f => f.name).join(', ');
+        label.textContent = nomes;
+      } else {
+        label.textContent = 'Nenhum arquivo selecionado';
+      }
+    });
+
+    document.querySelectorAll('input[name="daninhas"]').forEach(radio => {
+      radio.addEventListener('change', function() {
+        const detalhes = document.getElementById('daninhas-detalhes');
+        if (this.value === "Sim") {
+          detalhes.classList.remove('hidden');
+        } else {
+          detalhes.classList.add('hidden');
+          // Limpa os campos ao esconder (opcional)
+          detalhes.querySelectorAll('input, select').forEach(el => {
+            if (el.type === "text" || el.type === "number") el.value = '';
+            if (el.tagName.toLowerCase() === "select") el.selectedIndex = 0;
+          });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
