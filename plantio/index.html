@@ -25,9 +25,10 @@
     <!-- Formulário estilizado padrão ampliado e bordas escuras -->
     <div class="p-12 space-y-10">
       <form id="mainForm" class="space-y-10">
+
         <!-- Cultura Implantada -->
-        <div class="space-y-3">
-          <label for="culturaPlantio" class="block font-bold text-gray-700 text-2xl">Cultura Implantada:</label>
+        <div class="bg-white rounded-2xl shadow p-6">
+          <label for="culturaPlantio" class="block font-bold text-gray-700 text-2xl mb-4">Cultura Implantada:</label>
           <textarea
             id="culturaPlantio"
             name="culturaPlantio"
@@ -39,8 +40,8 @@
         </div>
 
         <!-- Variedade da Cultura -->
-        <div class="space-y-3">
-          <label for="variedadePlantio" class="block font-bold text-gray-700 text-2xl">Variedade da Cultura:</label>
+        <div class="bg-white rounded-2xl shadow p-6">
+          <label for="variedadePlantio" class="block font-bold text-gray-700 text-2xl mb-4">Variedade da Cultura:</label>
           <textarea
             id="variedadePlantio"
             name="variedadePlantio"
@@ -52,8 +53,8 @@
         </div>
 
         <!-- PMS da semente -->
-        <div class="space-y-3">
-          <label for="pmsSementePlantio" class="block font-bold text-gray-700 text-2xl">PMS da semente (g):</label>
+        <div class="bg-white rounded-2xl shadow p-6">
+          <label for="pmsSementePlantio" class="block font-bold text-gray-700 text-2xl mb-4">PMS da semente (g):</label>
           <input type="number"
             id="pmsSementePlantio"
             name="pmsSementePlantio"
@@ -65,60 +66,61 @@
         </div>
 
         <!-- Umidade no solo -->
-        <div class="space-y-3">
-          <span class="font-bold text-gray-700 text-2xl">Umidade no solo:</span>
-          <div class="flex flex-wrap items-center gap-8">
+        <div class="bg-white rounded-2xl shadow p-6">
+          <span class="font-bold text-gray-700 text-2xl mb-4 block">Umidade no solo:</span>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="umidadeSolo" value="Insuficiente" class="form-radio text-green-600 w-7 h-7" required>
+              <input type="radio" name="umidadeSolo" value="Insuficiente" class="form-radio text-green-600 w-6 h-6" required>
               <span class="ml-3">Insuficiente</span>
             </label>
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="umidadeSolo" value="Moderada" class="form-radio text-green-600 w-7 h-7">
+              <input type="radio" name="umidadeSolo" value="Moderada" class="form-radio text-green-600 w-6 h-6">
               <span class="ml-3">Moderada</span>
             </label>
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="umidadeSolo" value="Boa" class="form-radio text-green-600 w-7 h-7">
+              <input type="radio" name="umidadeSolo" value="Boa" class="form-radio text-green-600 w-6 h-6">
               <span class="ml-3">Boa</span>
             </label>
           </div>
         </div>
 
         <!-- Tipo de plantio -->
-        <div class="space-y-3">
-          <span class="font-bold text-gray-700 text-2xl">Tipo de plantio:</span>
-          <div class="flex flex-wrap items-center gap-8">
+        <div class="bg-white rounded-2xl shadow p-6">
+          <span class="font-bold text-gray-700 text-2xl mb-4 block">Tipo de plantio:</span>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="tipoPlantio" value="Direto" class="form-radio text-green-600 w-7 h-7" required>
+              <input type="radio" name="tipoPlantio" value="Direto" class="form-radio text-green-600 w-6 h-6" required>
               <span class="ml-3">Plantio Direto</span>
             </label>
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="tipoPlantio" value="Convencional" class="form-radio text-green-600 w-7 h-7">
+              <input type="radio" name="tipoPlantio" value="Convencional" class="form-radio text-green-600 w-6 h-6">
               <span class="ml-3">Plantio Convencional</span>
             </label>
           </div>
         </div>
 
         <!-- Profundidade do plantio -->
-        <div class="space-y-3">
-          <span class="font-bold text-gray-700 text-2xl">Profundidade do plantio:</span>
-          <div class="flex flex-wrap items-center gap-8">
+        <div class="bg-white rounded-2xl shadow p-6">
+          <span class="font-bold text-gray-700 text-2xl mb-4 block">Profundidade do plantio:</span>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="profundidadePlantio" value="Uniforme" class="form-radio text-green-600 w-7 h-7" required>
+              <input type="radio" name="profundidadePlantio" value="Uniforme" class="form-radio text-green-600 w-6 h-6" required>
               <span class="ml-3">Uniforme</span>
             </label>
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="profundidadePlantio" value="Superficial" class="form-radio text-green-600 w-7 h-7">
+              <input type="radio" name="profundidadePlantio" value="Superficial" class="form-radio text-green-600 w-6 h-6">
               <span class="ml-3">Superficial</span>
             </label>
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="profundidadePlantio" value="Profunda" class="form-radio text-green-600 w-7 h-7">
+              <input type="radio" name="profundidadePlantio" value="Profunda" class="form-radio text-green-600 w-6 h-6">
               <span class="ml-3">Profunda</span>
             </label>
           </div>
         </div>
+
         <!-- Informações Adicionais -->
-        <div class="space-y-3">
-          <label for="info-adicional-plantio" class="block font-bold text-gray-700 text-2xl">
+        <div class="bg-white rounded-2xl shadow p-6">
+          <label for="info-adicional-plantio" class="block font-bold text-gray-700 text-2xl mb-4">
             Informações Adicionais
           </label>
           <textarea
@@ -126,12 +128,12 @@
             name="info_adicional_plantio"
             class="w-full border-2 border-gray-700 rounded-2xl p-6 text-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition"
             rows="4"
-            placeholder="Espaço   livre para observações ou dados que o técnico quiser adicionar…"
+            placeholder="Espaço livre para observações ou dados que o técnico quiser adicionar…"
           ></textarea>
         </div>
 
         <!-- Anexar Fotos -->
-        <div class="space-y-2 mb-8">
+        <div class="bg-white rounded-2xl shadow p-6 mb-8">
           <label for="anexoFotosPlantio" class="block font-bold text-gray-700 text-xl mb-2">
             Anexar fotos (opcional):
           </label>
@@ -156,6 +158,7 @@
             accept="image/*"
             multiple>
         </div>
+
         <!-- Botão Enviar -->
         <div class="pt-6">
           <button type="submit"
@@ -169,17 +172,16 @@
     <footer class="text-center text-lg text-gray-500 pb-6">© 2025 Sua Empresa</footer>
   </div>
   <script src="../components/app.js"></script>
-<script>
-document.getElementById('anexoFotosPlantio').addEventListener('change', function(e) {
-  let label = document.getElementById('anexoFotosPlantio-nome');
-  if (this.files.length > 0) {
-    let nomes = Array.from(this.files).map(f => f.name).join(', ');
-    label.textContent = nomes;
-  } else {
-    label.textContent = 'Nenhum arquivo selecionado';
-  }
-});
-</script>
-
+  <script>
+    document.getElementById('anexoFotosPlantio').addEventListener('change', function(e) {
+      let label = document.getElementById('anexoFotosPlantio-nome');
+      if (this.files.length > 0) {
+        let nomes = Array.from(this.files).map(f => f.name).join(', ');
+        label.textContent = nomes;
+      } else {
+        label.textContent = 'Nenhum arquivo selecionado';
+      }
+    });
+  </script>
 </body>
 </html>

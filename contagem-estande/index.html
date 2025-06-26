@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Contagem de Estande</title>
+  <title>Monitoramento Mip e Mid</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style src="../components/style.css"></style>
 </head>
@@ -17,129 +17,207 @@
       </a>
       <div class="flex flex-col items-center">
         <img src="../Logo.png" alt="Logo da Empresa" class="h-40 object-contain drop-shadow-xl mb-4">
-        <h2 class="text-5xl font-extrabold text-white drop-shadow mb-2">Contagem de Estande</h2>
+        <h2 class="text-5xl font-extrabold text-white drop-shadow mb-2">Monitoramento Mip e Mid</h2>
         <span class="text-green-100 font-light text-2xl">Informações iniciais para o monitoramento agrícola</span>
       </div>
     </div>
 
-    <!-- Formulário estilizado padrão ampliado e bordas escuras -->
+    <!-- Formulário estilizado em cards -->
     <div class="p-12 space-y-10">
       <form id="mainForm" class="space-y-10">
-        <!-- Data da semeadura -->
-        <div class="space-y-3">
-          <label for="dataSemeadura" class="block font-bold text-gray-700 text-2xl">Qual data foi realizada a semeadura?</label>
-          <input type="date" id="dataSemeadura" name="dataSemeadura"
+
+        <!-- Fase da cultura -->
+        <div class="bg-white rounded-2xl shadow p-6">
+          <label for="faseCultura" class="block font-bold text-gray-700 text-2xl mb-4">Em que fase se encontra a cultura?</label>
+          <input type="text" id="faseCultura" name="faseCultura"
+            class="w-full border-2 border-gray-700 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition"
+            placeholder="Ex: V4, R1…">
+        </div>
+
+        <!-- Precipitação 7 dias -->
+        <div class="bg-white rounded-2xl shadow p-6">
+          <label for="precipitacao7d" class="block font-bold text-gray-700 text-2xl mb-4">
+            Precipitação calculada dos próximos 7 dias:
+          </label>
+          <input type="number" id="precipitacao7d" name="precipitacao7d"
+            class="w-full border-2 border-gray-700 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition"
+            placeholder="Exemplo: 15, 23, 30 mm">
+        </div>
+
+        <!-- Ciclo fenológico -->
+        <div class="bg-white rounded-2xl shadow p-6">
+          <span class="block font-bold text-gray-700 text-2xl mb-4">Todo o talhão apresenta mesmo ciclo fenológico?</span>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+            <label class="inline-flex items-center text-xl">
+              <input type="radio" name="mesmoCiclo" value="Sim" class="form-radio text-green-600 w-6 h-6">
+              <span class="ml-3">Sim</span>
+            </label>
+            <label class="inline-flex items-center text-xl">
+              <input type="radio" name="mesmoCiclo" value="Não" class="form-radio text-green-600 w-6 h-6">
+              <span class="ml-3">Não</span>
+            </label>
+          </div>
+          <input type="text" name="cicloMotivo"
+            class="mt-4 w-full border-2 border-gray-700 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition"
+            placeholder="Se não, o que afetou?">
+        </div>
+
+        <!-- Uniformidade grãos/vagens -->
+        <div class="bg-white rounded-2xl shadow p-6">
+          <span class="block font-bold text-gray-700 text-2xl mb-4">Plantas apresentam uniformidade na formação de grãos e vagens?</span>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+            <label class="inline-flex items-center text-xl">
+              <input type="radio" name="uniformidadeGrãos" value="Uniforme" class="form-radio text-green-600 w-6 h-6">
+              <span class="ml-3">Uniforme</span>
+            </label>
+            <label class="inline-flex items-center text-xl">
+              <input type="radio" name="uniformidadeGrãos" value="Desuniforme" class="form-radio text-green-600 w-6 h-6">
+              <span class="ml-3">Desuniforme</span>
+            </label>
+          </div>
+          <input type="text" name="uniformidadeMotivo"
+            class="mt-4 w-full border-2 border-gray-700 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition"
+            placeholder="Se desuniforme, por quê?">
+        </div>
+
+        <!-- Vagens por planta -->
+        <div class="bg-white rounded-2xl shadow p-6">
+          <label for="vagensPorPlanta" class="block font-bold text-gray-700 text-2xl mb-4">
+            Quantidade de vagens por planta:
+          </label>
+          <input type="number" id="vagensPorPlanta" name="vagensPorPlanta"
             class="w-full border-2 border-gray-700 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition">
         </div>
 
-        <!-- População alvo -->
-        <div class="space-y-3">
-          <label for="populacaoAlvo" class="block font-bold text-gray-700 text-2xl">Qual a população alvo?</label>
-          <input type="number" id="populacaoAlvo" name="populacaoAlvo"
-            class="w-full border-2 border-gray-700 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition">
-        </div>
-
-        <!-- Estado fenológico -->
-        <div class="space-y-3">
-          <span class="block font-bold text-gray-700 text-2xl">Qual estado fenológico?</span>
-          <div class="flex flex-wrap gap-8">
+        <!-- INSETOS -->
+        <div class="bg-white rounded-2xl shadow p-6">
+          <span class="font-bold text-gray-700 text-2xl mb-4 block">Constatação de insetos nas plantas?</span>
+          <div class="grid grid-cols-2 gap-4">
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="estadoFenologico" value="VE" class="form-radio text-green-600 w-7 h-7">
-              <span class="ml-3">VE</span>
+              <input type="radio" name="insetosPresentes" value="Não" class="form-radio text-green-600 w-6 h-6">
+              <span class="ml-3">Não</span>
             </label>
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="estadoFenologico" value="VC" class="form-radio text-green-600 w-7 h-7">
-              <span class="ml-3">VC</span>
+              <input type="radio" name="insetosPresentes" value="Sim" class="form-radio text-green-600 w-6 h-6">
+              <span class="ml-3">Sim</span>
             </label>
-            <label class="inline-flex items-center text-xl">
-              <input type="radio" name="estadoFenologico" value="V1" class="form-radio text-green-600 w-7 h-7">
-              <span class="ml-3">V1</span>
-            </label>
-            <label class="inline-flex items-center text-xl">
-              <input type="radio" name="estadoFenologico" value="V2" class="form-radio text-green-600 w-7 h-7">
-              <span class="ml-3">V2</span>
+          </div>
+          <div id="insetos-detalhes" class="space-y-6 hidden mt-6">
+            <div>
+              <label for="insetosQualMip" class="block font-bold text-gray-700 mb-3 text-2xl">Qual inseto?</label>
+              <input
+                type="text"
+                id="insetosQualMip"
+                name="insetosQualMip"
+                class="w-full border-2 border-gray-700 rounded-2xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition text-lg"
+                placeholder="Descreva o inseto encontrado"
+              >
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label for="incidenciaInsetosMip" class="block text-gray-600 text-lg">Incidência (m²/batida):</label>
+                <input type="number" id="incidenciaInsetosMip" name="incidenciaInsetosMip" step="0.01"
+                  class="w-full border-2 border-gray-700 rounded-2xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition text-lg"
+                  placeholder="ex: 0.5">
+              </div>
+              <div>
+                <label for="urgenciaInsetosMip" class="block text-gray-600 text-lg">Urgência (1–5):</label>
+                <select id="urgenciaInsetosMip" name="urgenciaInsetosMip"
+                  class="w-full border-2 border-gray-700 rounded-2xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition text-lg">
+                  <option selected hidden>Selecione a urgência</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- Distribuição nas linhas -->
-        <div class="space-y-3">
-          <span class="block font-bold text-gray-700 text-2xl">Como o plantio está distribuído nas linhas?</span>
-          <div class="flex flex-wrap gap-8">
+        <!-- PLANTAS DANINHAS -->
+        <div class="bg-white rounded-2xl shadow p-6">
+          <span class="font-bold text-gray-700 text-2xl mb-4 block">Presença de plantas daninhas?</span>
+          <div class="grid grid-cols-2 gap-4">
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="distribuicaoLinhas" value="Muito Irregulares" class="form-radio text-green-600 w-7 h-7">
-              <span class="ml-3">Muito Irregulares</span>
+              <input type="radio" name="daninhasPresentesMip" value="Não" class="form-radio text-green-600 w-6 h-6">
+              <span class="ml-3">Não</span>
             </label>
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="distribuicaoLinhas" value="Irregulares" class="form-radio text-green-600 w-7 h-7">
-              <span class="ml-3">Irregulares</span>
-            </label>
-            <label class="inline-flex items-center text-xl">
-              <input type="radio" name="distribuicaoLinhas" value="Boa" class="form-radio text-green-600 w-7 h-7">
-              <span class="ml-3">Boa</span>
+              <input type="radio" name="daninhasPresentesMip" value="Sim" class="form-radio text-green-600 w-6 h-6">
+              <span class="ml-3">Sim</span>
             </label>
           </div>
-        </div>
-
-        <!-- Condição climática -->
-        <div class="space-y-3">
-          <span class="block font-bold text-gray-700 text-2xl">Lavoura sendo afetada por condiçõeos climáticas?</span>
-          <div class="flex flex-wrap gap-8">
-            <label class="inline-flex items-center text-xl">
-              <input type="checkbox" name="clima" value="Estiagem" class="form-checkbox text-green-600 w-7 h-7">
-              <span class="ml-3">Estiagem</span>
-            </label>
-            <label class="inline-flex items-center text-xl">
-              <input type="checkbox" name="clima" value="Baixa Temperatura" class="form-checkbox text-green-600 w-7 h-7">
-              <span class="ml-3">Baixa Temperatura</span>
-            </label>
-            <label class="inline-flex items-center text-xl">
-              <input type="checkbox" name="clima" value="Chuva Forte" class="form-checkbox text-green-600 w-7 h-7">
-              <span class="ml-3">Chuva Forte</span>
-            </label>
-            <label class="inline-flex items-center text-xl">
-              <input type="checkbox" name="clima" value="Outros" class="form-checkbox text-green-600 w-7 h-7">
-              <span class="ml-3">Outros:</span>
-              <input type="text" name="climaOutrosTexto"
-                class="ml-3 border-2 border-gray-700 rounded-2xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition w-52 text-lg"
-                placeholder="Qual?">
-            </label>
+          <div id="daninhas-detalhes" class="space-y-6 hidden mt-6">
+            <div>
+              <label for="daninhasQualMip" class="block font-bold text-gray-700 mb-3 text-2xl">Qual planta daninha?</label>
+              <input
+                type="text"
+                id="daninhasQualMip"
+                name="daninhasQualMip"
+                class="w-full border-2 border-gray-700 rounded-2xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition text-lg"
+                placeholder="Descreva a planta daninha encontrada"
+              >
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label for="incidenciaDaninhasMip" class="block text-gray-600 text-lg">Incidência (m²):</label>
+                <input type="number" id="incidenciaDaninhasMip" name="incidenciaDaninhasMip" step="0.01"
+                  class="w-full border-2 border-gray-700 rounded-2xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition text-lg"
+                  placeholder="ex: 0.5">
+              </div>
+              <div>
+                <label for="urgenciaDaninhasMip" class="block text-gray-600 text-lg">Urgência (1–5):</label>
+                <select id="urgenciaDaninhasMip" name="urgenciaDaninhasMip"
+                  class="w-full border-2 border-gray-700 rounded-2xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition text-lg">
+                  <option selected hidden>Selecione a urgência</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+            </div>
           </div>
         </div>
 
         <!-- DOENÇAS -->
-        <div class="space-y-3">
-          <span class="block font-bold text-gray-700 text-2xl">Constatada presença de doença?</span>
-          <div class="flex flex-wrap gap-8 items-center">
+        <div class="bg-white rounded-2xl shadow p-6">
+          <span class="font-bold text-gray-700 text-2xl mb-4 block">Presença de doenças nas plantas?</span>
+          <div class="grid grid-cols-2 gap-4">
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="doencaPresente" value="Não" class="form-radio text-green-600 w-7 h-7">
+              <input type="radio" name="doencasPresentesMip" value="Não" class="form-radio text-green-600 w-6 h-6">
               <span class="ml-3">Não</span>
             </label>
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="doencaPresente" value="Sim" class="form-radio text-green-600 w-7 h-7">
+              <input type="radio" name="doencasPresentesMip" value="Sim" class="form-radio text-green-600 w-6 h-6">
               <span class="ml-3">Sim</span>
             </label>
           </div>
-          <div id="doenca-detalhes" class="space-y-6 hidden">
+          <div id="doencas-detalhes" class="space-y-6 hidden mt-6">
             <div>
-              <label for="doencaQual" class="block font-bold text-gray-700 mb-3 text-2xl">Qual doença?</label>
+              <label for="doencasQualMip" class="block font-bold text-gray-700 mb-3 text-2xl">Qual doença?</label>
               <input
                 type="text"
-                id="doencaQual"
-                name="doencaQual"
-                class="w-full border-2 border-gray-700 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition"
-                placeholder="Nome da doença">
+                id="doencasQualMip"
+                name="doencasQualMip"
+                class="w-full border-2 border-gray-700 rounded-2xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition text-lg"
+                placeholder="Descreva a doença encontrada"
+              >
             </div>
-            <div class="grid grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label for="incidenciaDoenca" class="block text-gray-600 text-lg">Incidência (plantas/m²):</label>
-                <input type="number" id="incidenciaDoenca" name="incidenciaDoenca"
-                  class="w-full border-2 border-gray-700 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition"
-                  step="0.01">
+                <label for="incidenciaDoencasMip" class="block text-gray-600 text-lg">Incidência (m²):</label>
+                <input type="number" id="incidenciaDoencasMip" name="incidenciaDoencasMip" step="0.01"
+                  class="w-full border-2 border-gray-700 rounded-2xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition text-lg"
+                  placeholder="ex: 0.5">
               </div>
               <div>
-                <label for="nivelUrgenciaDoenca" class="block text-gray-600 text-lg">Nível de urgência (1–5):</label>
-                <select id="nivelUrgenciaDoenca" name="nivelUrgenciaDoenca"
-                  class="w-full border-2 border-gray-700 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition">
+                <label for="urgenciaDoencasMip" class="block text-gray-600 text-lg">Urgência (1–5):</label>
+                <select id="urgenciaDoencasMip" name="urgenciaDoencasMip"
+                  class="w-full border-2 border-gray-700 rounded-2xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition text-lg">
                   <option selected hidden>Selecione a urgência</option>
                   <option>1</option>
                   <option>2</option>
@@ -152,117 +230,26 @@
           </div>
         </div>
 
-        <!-- INSETOS -->
-        <div class="space-y-3">
-          <span class="block font-bold text-gray-700 text-2xl">Constatada presença de insetos?</span>
-          <div class="flex flex-wrap gap-8 items-center">
-            <label class="inline-flex items-center text-xl">
-              <input type="radio" name="insetosPresente" value="Não" class="form-radio text-green-600 w-7 h-7">
-              <span class="ml-3">Não</span>
-            </label>
-            <label class="inline-flex items-center text-xl">
-              <input type="radio" name="insetosPresente" value="Sim" class="form-radio text-green-600 w-7 h-7">
-              <span class="ml-3">Sim</span>
-            </label>
-          </div>
-          <div id="insetos-detalhes-estande" class="space-y-6 hidden">
-            <div>
-              <label for="insetosQual" class="block font-bold text-gray-700 mb-3 text-2xl">Qual inseto?</label>
-              <input
-                type="text"
-                id="insetosQual"
-                name="insetosQual"
-                class="w-full border-2 border-gray-700 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition"
-                placeholder="Nome do inseto">
-            </div>
-            <div class="grid grid-cols-2 gap-6">
-              <div>
-                <label for="incidenciaInsetos" class="block text-gray-600 text-lg">Incidência insetos (m²/pano):</label>
-                <input type="number" id="incidenciaInsetos" name="incidenciaInsetos"
-                  class="w-full border-2 border-gray-700 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition"
-                  step="0.01">
-              </div>
-              <div>
-                <label for="nivelUrgenciaInsetos" class="block text-gray-600 text-lg">Nível de urgência (1–5):</label>
-                <select id="nivelUrgenciaInsetos" name="nivelUrgenciaInsetos"
-                  class="w-full border-2 border-gray-700 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition">
-                  <option selected hidden>Selecione a urgência</option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </select>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- DANINHAS -->
-        <div class="space-y-3">
-          <span class="block font-bold text-gray-700 text-2xl">Constatada presença de plantas daninhas?</span>
-          <div class="flex flex-wrap gap-8 items-center">
-            <label class="inline-flex items-center text-xl">
-              <input type="radio" name="daninhasPresente" value="Não" class="form-radio text-green-600 w-7 h-7">
-              <span class="ml-3">Não</span>
-            </label>
-            <label class="inline-flex items-center text-xl">
-              <input type="radio" name="daninhasPresente" value="Sim" class="form-radio text-green-600 w-7 h-7">
-              <span class="ml-3">Sim</span>
-            </label>
-          </div>
-          <div id="daninhas-detalhes-estande" class="space-y-6 hidden">
-            <div>
-              <label for="daninhasQual" class="block font-bold text-gray-700 mb-3 text-2xl">Qual planta daninha?</label>
-              <input
-                type="text"
-                id="daninhasQual"
-                name="daninhasQual"
-                class="w-full border-2 border-gray-700 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition"
-                placeholder="Tipo de daninha">
-            </div>
-            <div class="grid grid-cols-2 gap-6">
-              <div>
-                <label for="incidenciaDaninhas" class="block text-gray-600 text-lg">Incidência daninhas (m²):</label>
-                <input type="number" id="incidenciaDaninhas" name="incidenciaDaninhas"
-                  class="w-full border-2 border-gray-700 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition"
-                  step="0.01">
-              </div>
-              <div>
-                <label for="nivelUrgenciaDaninhas" class="block text-gray-600 text-lg">Nível de urgência (1–5):</label>
-                <select id="nivelUrgenciaDaninhas" name="nivelUrgenciaDaninhas"
-                  class="w-full border-2 border-gray-700 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition">
-                  <option selected hidden>Selecione a urgência</option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </select>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Informações Adicionais + Anexo (Contagem de Estande) -->
-        <div class="space-y-3">
-          <label for="info-adicional-estande" class="block font-bold text-gray-700 text-2xl">
+        <!-- Informações Adicionais + Anexo (Monitoramento MIP/MID) -->
+        <div class="bg-white rounded-2xl shadow p-6">
+          <label for="info-adicional-mipmid" class="block font-bold text-gray-700 text-2xl mb-4">
             Informações Adicionais
           </label>
           <textarea
-            id="info-adicional-estande"
-            name="info_adicional_estande"
+            id="info-adicional-mipmid"
+            name="info_adicional_mipmid"
             class="w-full border-2 border-gray-700 rounded-2xl p-6 text-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition"
             rows="4"
             placeholder="Espaço livre para observações ou dados que o técnico quiser adicionar…"
           ></textarea>
         </div>
 
-        <div class="space-y-2 mb-8">
-          <label for="anexoEstande" class="block font-bold text-gray-700 text-xl mb-2">
+        <div class="bg-white rounded-2xl shadow p-6 mb-8">
+          <label for="anexoMipMid" class="block font-bold text-gray-700 text-xl mb-2">
             Anexar arquivo (opcional):
           </label>
           <div class="flex flex-col items-center gap-4">
-            <label for="anexoEstande"
+            <label for="anexoMipMid"
               class="w-full cursor-pointer inline-flex justify-center items-center px-6 py-6 bg-green-700 hover:bg-green-800 text-white font-extrabold rounded-2xl shadow-lg transition text-2xl text-center">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-4" fill="none"
                 viewBox="0 0 24 24" stroke="currentColor">
@@ -273,19 +260,16 @@
               </svg>
               Selecione o arquivo
             </label>
-            <span id="anexoEstande-nome" class="text-gray-600 italic text-lg">Nenhum arquivo selecionado</span>
+            <span id="anexoMipMid-nome" class="text-gray-600 italic text-lg">Nenhum arquivo selecionado</span>
           </div>
           <input type="file"
-            id="anexoEstande"
-            name="anexoEstande"
+            id="anexoMipMid"
+            name="anexoMipMid"
             class="hidden"
             accept="image/*,application/pdf"
             multiple>
         </div>
-
-
-
-        <!-- Botão Enviar -->
+        <!-- Enviar -->
         <div class="pt-6">
           <button type="submit"
             class="w-full bg-green-700 hover:bg-green-800 text-white font-extrabold py-6 rounded-2xl shadow-xl text-2xl transition-all">
@@ -297,30 +281,38 @@
     </div>
     <footer class="text-center text-lg text-gray-500 pb-6">© 2025 Sua Empresa</footer>
   </div>
-  <script src="../components/app.js"></script>
+  <script src="../components/app.js" defer></script>
   <script>
-  function setupDetalhes(nomeCampo, idDetalhe) {
-    document.querySelectorAll('input[name="' + nomeCampo + '"]').forEach(el => {
-      el.addEventListener('change', function() {
-        document.getElementById(idDetalhe).classList.toggle('hidden', this.value !== 'Sim');
+    // Função para mostrar/esconder detalhes condicionais (insetos, daninhas, doenças)
+    function setupDetalhes(nomeCampo, idDetalhe) {
+      document.querySelectorAll('input[name="' + nomeCampo + '"]').forEach(el => {
+        el.addEventListener('change', function() {
+          document.getElementById(idDetalhe).classList.toggle('hidden', this.value !== 'Sim');
+          // Limpa ao esconder
+          if(this.value !== 'Sim') {
+            document.getElementById(idDetalhe).querySelectorAll('input, select').forEach(field => {
+              if (field.type === 'text' || field.type === 'number') field.value = '';
+              if (field.tagName.toLowerCase() === 'select') field.selectedIndex = 0;
+            });
+          }
+        });
       });
-    });
-  }
-
-  setupDetalhes('doencaPresente', 'doenca-detalhes');
-  setupDetalhes('insetosPresente', 'insetos-detalhes-estande');
-  setupDetalhes('daninhasPresente', 'daninhas-detalhes-estande');
-
-  document.getElementById('anexoEstande').addEventListener('change', function(e) {
-    let label = document.getElementById('anexoEstande-nome');
-    if (this.files.length > 0) {
-      let nomes = Array.from(this.files).map(f => f.name).join(', ');
-      label.textContent = nomes;
-    } else {
-      label.textContent = 'Nenhum arquivo selecionado';
     }
-  });
-</script>
+    setupDetalhes('insetosPresentes', 'insetos-detalhes');
+    setupDetalhes('daninhasPresentesMip', 'daninhas-detalhes');
+    setupDetalhes('doencasPresentesMip', 'doencas-detalhes');
 
+    // Anexos
+    document.getElementById('anexoMipMid').addEventListener('change', function(e) {
+      let label = document.getElementById('anexoMipMid-nome');
+      if (this.files.length > 0) {
+        let nomes = Array.from(this.files).map(f => f.name).join(', ');
+        label.textContent = nomes;
+      } else {
+        label.textContent = 'Nenhum arquivo selecionado';
+      }
+    });
+  </script>
 </body>
 </html>
+
