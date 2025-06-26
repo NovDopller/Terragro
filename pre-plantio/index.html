@@ -5,20 +5,37 @@
   <title>Pré-Plantio</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style src="../components/style.css"></style>
+  <script>
+    // Aplica modo dark salvo no localStorage ou conforme preferência do usuário
+    if (
+      localStorage.theme === 'dark' ||
+      (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  </script>
 </head>
-<body class="bg-gradient-to-br from-green-100 via-white to-green-200 min-h-screen flex items-center justify-center p-2">
-  <div class="w-full max-w-4xl rounded-3xl shadow-2xl bg-white/90 backdrop-blur-md border-2 border-green-200">
+<body class="bg-gradient-to-br from-green-100 via-white to-green-200 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 min-h-screen flex items-center justify-center p-2 transition-colors">
+  <div class="w-full max-w-4xl rounded-3xl shadow-2xl bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-2 border-green-200 dark:border-gray-700 transition-colors">
     <!-- Cabeçalho -->
-    <div class="bg-green-700 p-8 rounded-t-3xl relative shadow-lg">
+    <div class="bg-green-700 dark:bg-gray-800 p-8 rounded-t-3xl relative shadow-lg transition-colors">
+      <!-- Botão modo escuro/claro -->
+      <button id="toggleDarkMode"
+        class="absolute right-8 top-1/2 -translate-y-1/2 bg-white/90 dark:bg-gray-700 text-green-700 dark:text-yellow-400 px-4 py-2 rounded-xl shadow hover:bg-green-50 dark:hover:bg-gray-600 transition-all text-3xl font-bold border border-green-200 dark:border-yellow-400"
+        aria-label="Alternar modo claro/escuro">
+        🌙
+      </button>
       <a href="../index.html"
         class="absolute left-8 top-1/2 -translate-y-1/2 
-               bg-white/90 text-green-700 font-bold px-6 py-4 rounded-xl shadow hover:bg-green-50 transition-all text-lg">
+               bg-white/90 dark:bg-gray-700 text-green-700 dark:text-yellow-400 font-bold px-6 py-4 rounded-xl shadow hover:bg-green-50 dark:hover:bg-gray-600 transition-all text-lg border border-green-200 dark:border-yellow-400">
         ← Voltar
       </a>
       <div class="flex flex-col items-center">
         <img src="../Logo.png" alt="Logo da Empresa" class="h-40 object-contain drop-shadow-xl mb-4">
-        <h2 class="text-5xl font-extrabold text-white drop-shadow mb-2">Pré-Plantio</h2>
-        <span class="text-green-100 font-light text-2xl">Informações iniciais para o monitoramento agrícola</span>
+        <h2 class="text-5xl font-extrabold text-white drop-shadow mb-2 dark:text-yellow-400 transition-colors">Pré-Plantio</h2>
+        <span class="text-green-100 font-light text-2xl dark:text-yellow-200 transition-colors">Informações iniciais para o monitoramento agrícola</span>
       </div>
     </div>
 
@@ -26,14 +43,14 @@
       <form id="mainForm" class="space-y-10">
         <!-- Área total do talhão -->
         <div class="space-y-3">
-          <span class="font-bold text-gray-700 text-2xl">Será plantada a área total do talhão?</span>
+          <span class="font-bold text-gray-700 dark:text-yellow-200 text-2xl">Será plantada a área total do talhão?</span>
           <div class="flex flex-wrap items-center gap-8">
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="areaTotalTalhao" value="Sim" class="form-radio text-green-600 w-7 h-7">
+              <input type="radio" name="areaTotalTalhao" value="Sim" class="form-radio text-green-600 dark:text-yellow-400 w-7 h-7">
               <span class="ml-3">Sim</span>
             </label>
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="areaTotalTalhao" value="Não" class="form-radio text-green-600 w-7 h-7">
+              <input type="radio" name="areaTotalTalhao" value="Não" class="form-radio text-green-600 dark:text-yellow-400 w-7 h-7">
               <span class="ml-3">Não</span>
             </label>
             <div id="hectaresContainer" class="hidden flex items-center gap-3 ml-auto">
@@ -42,18 +59,18 @@
                 name="hectaresPlantadosPP"
                 placeholder="0,00"
                 step="0.01"
-                class="w-36 border rounded-2xl px-6 py-4 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition text-lg"
+                class="w-36 border rounded-2xl px-6 py-4 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition text-lg dark:bg-gray-800 dark:text-yellow-200 dark:border-yellow-400"
               >
-              <span class="text-gray-700 text-lg">ha</span>
+              <span class="text-gray-700 dark:text-yellow-200 text-lg">ha</span>
             </div>
           </div>
         </div>
 
         <!-- Cultura a ser implantada -->
         <div class="space-y-3">
-          <label for="culturaPP" class="block font-bold text-gray-700 text-2xl">Cultura a ser implantada:</label>
+          <label for="culturaPP" class="block font-bold text-gray-700 dark:text-yellow-200 text-2xl">Cultura a ser implantada:</label>
           <select id="culturaPP" name="culturaPP"
-            class="w-full border rounded-2xl px-6 py-4 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition text-lg">
+            class="w-full border rounded-2xl px-6 py-4 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition text-lg dark:bg-gray-800 dark:text-yellow-200 dark:border-yellow-400">
             <option selected hidden>Selecione</option>
             <option>Soja</option>
             <option>Milho</option>
@@ -67,7 +84,7 @@
 
         <!-- Variedade da Cultura -->
         <div class="space-y-3">
-          <label for="variedadePP" class="block font-bold text-gray-700 text-2xl">
+          <label for="variedadePP" class="block font-bold text-gray-700 dark:text-yellow-200 text-2xl">
             Variedade da Cultura:
           </label>
           <textarea
@@ -75,38 +92,38 @@
             name="variedadePP"
             rows="2"
             placeholder="Informe a variedade da cultura…"
-            class="auto-expand resize-none overflow-hidden w-full border rounded-2xl px-6 py-4 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition text-lg"
+            class="auto-expand resize-none overflow-hidden w-full border rounded-2xl px-6 py-4 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition text-lg dark:bg-gray-800 dark:text-yellow-200 dark:border-yellow-400"
           ></textarea>
         </div>
         <!-- PMS da cultura -->
         <div class="space-y-3">
-          <label for="pmsPP" class="block font-bold text-gray-700 text-2xl">PMS da cultura (g):</label>
+          <label for="pmsPP" class="block font-bold text-gray-700 dark:text-yellow-200 text-2xl">PMS da cultura (g):</label>
           <input type="number" id="pmsPP" name="pmsPP" step="0.01"
-            class="w-full border rounded-2xl px-6 py-4 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition text-lg">
+            class="w-full border rounded-2xl px-6 py-4 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition text-lg dark:bg-gray-800 dark:text-yellow-200 dark:border-yellow-400">
         </div>
 
         <!-- Data prevista para plantio -->
         <div class="space-y-3">
-          <label for="dataPrevPlantioPP" class="block font-bold text-gray-700 text-2xl">Data prevista para o plantio:</label>
+          <label for="dataPrevPlantioPP" class="block font-bold text-gray-700 dark:text-yellow-200 text-2xl">Data prevista para o plantio:</label>
           <input type="date" id="dataPrevPlantioPP" name="dataPrevPlantioPP"
-            class="w-full border rounded-2xl px-6 py-4 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition text-lg">
+            class="w-full border rounded-2xl px-6 py-4 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition text-lg dark:bg-gray-800 dark:text-yellow-200 dark:border-yellow-400">
         </div>
 
         <!-- Última análise de solo -->
         <div class="space-y-3">
-          <label for="dataUltAnaliseSoloPP" class="block font-bold text-gray-700 text-2xl">Quando foi feita a última análise de solo?</label>
+          <label for="dataUltAnaliseSoloPP" class="block font-bold text-gray-700 dark:text-yellow-200 text-2xl">Quando foi feita a última análise de solo?</label>
           <input type="date" id="dataUltAnaliseSoloPP" name="dataUltAnaliseSoloPP"
-            class="w-full border rounded-2xl px-6 py-4 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition text-lg">
+            class="w-full border rounded-2xl px-6 py-4 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition text-lg dark:bg-gray-800 dark:text-yellow-200 dark:border-yellow-400">
         </div>
 
         <!-- Anexo da análise de solo (opcional) -->
         <div class="space-y-3">
-          <label for="anexoAnaliseSoloPP" class="block font-bold text-gray-700 text-2xl mb-2">
+          <label for="anexoAnaliseSoloPP" class="block font-bold text-gray-700 dark:text-yellow-200 text-2xl mb-2">
             Anexo da análise de solo (opcional):
           </label>
           <div class="flex flex-wrap items-center gap-6">
             <label for="anexoAnaliseSoloPP"
-              class="cursor-pointer inline-flex items-center px-6 py-4 bg-green-600 text-white font-bold rounded-2xl shadow hover:bg-green-700 transition text-lg">
+              class="cursor-pointer inline-flex items-center px-6 py-4 bg-green-600 dark:bg-yellow-500 text-white dark:text-gray-800 font-bold rounded-2xl shadow hover:bg-green-700 dark:hover:bg-yellow-400 transition text-lg">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 mr-3" fill="none"
                   viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -116,7 +133,7 @@
               </svg>
               Selecione a foto
             </label>
-            <span id="anexo-nome" class="text-gray-600 italic text-lg">Nenhum arquivo selecionado</span>
+            <span id="anexo-nome" class="text-gray-600 dark:text-yellow-300 italic text-lg">Nenhum arquivo selecionado</span>
           </div>
           <input type="file"
                 id="anexoAnaliseSoloPP"
@@ -127,14 +144,14 @@
 
         <!-- Calagem prevista/realizada -->
         <div class="space-y-3">
-          <span class="font-bold text-gray-700 text-2xl">Dosagem de calagem aplicada?</span>
+          <span class="font-bold text-gray-700 dark:text-yellow-200 text-2xl">Dosagem de calagem aplicada?</span>
           <div class="flex flex-wrap items-center gap-8">
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="dosagemCalagemPP" value="Sim" class="form-radio text-green-600 w-7 h-7">
+              <input type="radio" name="dosagemCalagemPP" value="Sim" class="form-radio text-green-600 dark:text-yellow-400 w-7 h-7">
               <span class="ml-3">Sim</span>
             </label>
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="dosagemCalagemPP" value="Não" class="form-radio text-green-600 w-7 h-7">
+              <input type="radio" name="dosagemCalagemPP" value="Não" class="form-radio text-green-600 dark:text-yellow-400 w-7 h-7">
               <span class="ml-3">Não</span>
             </label>
           </div>
@@ -142,7 +159,7 @@
 
         <!-- Container de Calagem, oculto por padrão -->
         <div id="calagemContainer" class="hidden space-y-3">
-          <label for="calagemPP" class="block font-bold text-gray-700 text-2xl">
+          <label for="calagemPP" class="block font-bold text-gray-700 dark:text-yellow-200 text-2xl">
             Calagem prevista/realizada:
           </label>
           <div class="flex items-center gap-4">
@@ -152,15 +169,15 @@
               name="calagemPP"
               placeholder="0,00"
               step="0.01"
-              class="w-36 border rounded-2xl px-6 py-4 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition text-lg"
+              class="w-36 border rounded-2xl px-6 py-4 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition text-lg dark:bg-gray-800 dark:text-yellow-200 dark:border-yellow-400"
             >
-            <span class="text-gray-700 text-lg">kg/ha</span>
+            <span class="text-gray-700 dark:text-yellow-200 text-lg">kg/ha</span>
           </div>
         </div>
 
         <!-- Histórico de solo -->
         <div class="space-y-3">
-          <label for="historicoSoloPP" class="block font-bold text-gray-700 text-2xl">
+          <label for="historicoSoloPP" class="block font-bold text-gray-700 dark:text-yellow-200 text-2xl">
             Histórico de compactação ou drenagem:
           </label>
           <textarea
@@ -168,13 +185,13 @@
             name="historicoSoloPP"
             rows="2"
             placeholder="Descreva o histórico de compactação ou drenagem do solo…"
-            class="auto-expand resize-none overflow-hidden w-full border rounded-2xl px-6 py-4 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition text-lg"
+            class="auto-expand resize-none overflow-hidden w-full border rounded-2xl px-6 py-4 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition text-lg dark:bg-gray-800 dark:text-yellow-200 dark:border-yellow-400"
           ></textarea>
         </div>
 
         <!-- Adubação anos anteriores -->
         <div class="space-y-3">
-          <label for="adubosAnterioresPP" class="block font-bold text-gray-700 text-2xl">
+          <label for="adubosAnterioresPP" class="block font-bold text-gray-700 dark:text-yellow-200 text-2xl">
             Quais adubos foram utilizados nos anos anteriores?
           </label>
           <textarea
@@ -182,13 +199,13 @@
             name="adubosAnterioresPP"
             rows="2"
             placeholder="Descreva os adubos utilizados nos anos anteriores…"
-            class="auto-expand resize-none overflow-hidden w-full border rounded-2xl px-6 py-4 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition text-lg"
+            class="auto-expand resize-none overflow-hidden w-full border rounded-2xl px-6 py-4 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition text-lg dark:bg-gray-800 dark:text-yellow-200 dark:border-yellow-400"
           ></textarea>
         </div>
 
         <!-- Adubação ano presente -->
         <div class="space-y-3">
-          <label for="adubacaoAnoPP" class="block font-bold text-gray-700 text-2xl">
+          <label for="adubacaoAnoPP" class="block font-bold text-gray-700 dark:text-yellow-200 text-2xl">
             Qual adubação está planejada/realizada neste ano?
           </label>
           <textarea
@@ -196,28 +213,28 @@
             name="adubacaoAnoPP"
             rows="2"
             placeholder="Digite aqui a adubação deste ano…"
-            class="auto-expand resize-none overflow-hidden w-full border rounded-2xl px-6 py-4 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition text-lg"
+            class="auto-expand resize-none overflow-hidden w-full border rounded-2xl px-6 py-4 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition text-lg dark:bg-gray-800 dark:text-yellow-200 dark:border-yellow-400"
           ></textarea>
         </div>
 
         <!-- Constatação de insetos -->
         <div class="space-y-3">
-          <span class="font-bold text-gray-700 text-2xl">Constatada presença de insetos?</span>
+          <span class="font-bold text-gray-700 dark:text-yellow-200 text-2xl">Constatada presença de insetos?</span>
           <div class="flex flex-wrap items-center gap-8">
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="insetosPP" value="Não" class="form-radio text-green-600 w-7 h-7">
+              <input type="radio" name="insetosPP" value="Não" class="form-radio text-green-600 dark:text-yellow-400 w-7 h-7">
               <span class="ml-3">Não</span>
             </label>
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="insetosPP" value="Sim" class="form-radio text-green-600 w-7 h-7">
+              <input type="radio" name="insetosPP" value="Sim" class="form-radio text-green-600 dark:text-yellow-400 w-7 h-7">
               <span class="ml-3">Sim</span>
             </label>
           </div>
           <div id="insetos-detalhes" class="space-y-6 hidden">
             <div>
-              <label for="insetosQualPP" class="block font-bold text-gray-700 mb-3 text-2xl">Qual inseto?</label>
+              <label for="insetosQualPP" class="block font-bold text-gray-700 dark:text-yellow-200 mb-3 text-2xl">Qual inseto?</label>
               <select id="insetosQualPP" name="insetosQualPP"
-                class="w-full border rounded-2xl px-6 py-4 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition text-lg">
+                class="w-full border rounded-2xl px-6 py-4 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition text-lg dark:bg-gray-800 dark:text-yellow-200 dark:border-yellow-400">
                 <option selected hidden>Selecione o inseto</option>
                 <option>Lagarta</option>
                 <option>Percevejo</option>
@@ -228,14 +245,14 @@
             </div>
             <div class="grid grid-cols-2 gap-6">
               <div>
-                <label for="incidenciaInsetosPP" class="block text-gray-600 text-lg">Incidência (m²/pano):</label>
+                <label for="incidenciaInsetosPP" class="block text-gray-600 dark:text-yellow-200 text-lg">Incidência (m²/pano):</label>
                 <input type="number" id="incidenciaInsetosPP" name="incidenciaInsetosPP" step="0.01"
-                  class="w-full border rounded-2xl px-6 py-4 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition text-lg">
+                  class="w-full border rounded-2xl px-6 py-4 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition text-lg dark:bg-gray-800 dark:text-yellow-200 dark:border-yellow-400">
               </div>
               <div>
-                <label for="urgenciaInsetosPP" class="block text-gray-600 text-lg">Urgência (1–5):</label>
+                <label for="urgenciaInsetosPP" class="block text-gray-600 dark:text-yellow-200 text-lg">Urgência (1–5):</label>
                 <select id="urgenciaInsetosPP" name="urgenciaInsetosPP"
-                  class="w-full border rounded-2xl px-6 py-4 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition text-lg">
+                  class="w-full border rounded-2xl px-6 py-4 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition text-lg dark:bg-gray-800 dark:text-yellow-200 dark:border-yellow-400">
                   <option selected hidden>Selecione a urgência</option>
                   <option>1</option>
                   <option>2</option>
@@ -250,22 +267,22 @@
 
         <!-- Constatação de plantas daninhas -->
         <div class="space-y-3">
-          <span class="font-bold text-gray-700 text-2xl">Constatada presença de plantas daninhas?</span>
+          <span class="font-bold text-gray-700 dark:text-yellow-200 text-2xl">Constatada presença de plantas daninhas?</span>
           <div class="flex flex-wrap items-center gap-8">
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="daninhasPP" value="Não" class="form-radio text-green-600 w-7 h-7">
+              <input type="radio" name="daninhasPP" value="Não" class="form-radio text-green-600 dark:text-yellow-400 w-7 h-7">
               <span class="ml-3">Não</span>
             </label>
             <label class="inline-flex items-center text-xl">
-              <input type="radio" name="daninhasPP" value="Sim" class="form-radio text-green-600 w-7 h-7">
+              <input type="radio" name="daninhasPP" value="Sim" class="form-radio text-green-600 dark:text-yellow-400 w-7 h-7">
               <span class="ml-3">Sim</span>
             </label>
           </div>
           <div id="daninhas-detalhes" class="space-y-6 hidden">
             <div>
-              <label for="daninhasQualPP" class="block font-bold text-gray-700 mb-3 text-2xl">Qual planta daninha?</label>
+              <label for="daninhasQualPP" class="block font-bold text-gray-700 dark:text-yellow-200 mb-3 text-2xl">Qual planta daninha?</label>
               <select id="daninhasQualPP" name="daninhasQualPP"
-                class="w-full border rounded-2xl px-6 py-4 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition text-lg">
+                class="w-full border rounded-2xl px-6 py-4 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition text-lg dark:bg-gray-800 dark:text-yellow-200 dark:border-yellow-400">
                 <option selected hidden>Selecione a planta daninha</option>
                 <option>Buva</option>
                 <option>Picão-preto</option>
@@ -276,14 +293,14 @@
             </div>
             <div class="grid grid-cols-2 gap-6">
               <div>
-                <label for="incidenciaDaninhasPP" class="block text-gray-600 text-lg">Incidência (m²):</label>
+                <label for="incidenciaDaninhasPP" class="block text-gray-600 dark:text-yellow-200 text-lg">Incidência (m²):</label>
                 <input type="number" id="incidenciaDaninhasPP" name="incidenciaDaninhasPP" step="0.01"
-                  class="w-full border rounded-2xl px-6 py-4 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition text-lg">
+                  class="w-full border rounded-2xl px-6 py-4 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition text-lg dark:bg-gray-800 dark:text-yellow-200 dark:border-yellow-400">
               </div>
               <div>
-                <label for="urgenciaDaninhasPP" class="block text-gray-600 text-lg">Urgência (1–5):</label>
+                <label for="urgenciaDaninhasPP" class="block text-gray-600 dark:text-yellow-200 text-lg">Urgência (1–5):</label>
                 <select id="urgenciaDaninhasPP" name="urgenciaDaninhasPP"
-                  class="w-full border rounded-2xl px-6 py-4 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition text-lg">
+                  class="w-full border rounded-2xl px-6 py-4 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition text-lg dark:bg-gray-800 dark:text-yellow-200 dark:border-yellow-400">
                   <option selected hidden>Selecione a urgência</option>
                   <option>1</option>
                   <option>2</option>
@@ -297,12 +314,12 @@
         </div>
 
         <!-- Informações adicionais -->
-        <fieldset class="rounded-2xl p-6 mb-8 border-2 border-green-100">
-          <legend class="font-bold px-3 text-xl">Informações Adicionais</legend>
+        <fieldset class="rounded-2xl p-6 mb-8 border-2 border-green-100 dark:border-yellow-400">
+          <legend class="font-bold px-3 text-xl dark:text-yellow-200">Informações Adicionais</legend>
           <textarea
             id="info-adicional"
             name="info_adicional"
-            class="auto-expand p-4 border rounded-2xl w-full text-lg"
+            class="auto-expand p-4 border rounded-2xl w-full text-lg dark:bg-gray-800 dark:text-yellow-200 dark:border-yellow-400"
             rows="4"
             placeholder="Espaço livre para observações ou dados que o técnico quiser adicionar…"
           ></textarea>
@@ -311,7 +328,7 @@
         <!-- Botão Enviar -->
         <div class="pt-6">
           <button type="submit"
-            class="w-full bg-green-700 hover:bg-green-800 text-white font-extrabold py-6 rounded-2xl shadow-xl text-2xl transition-all">
+            class="w-full bg-green-700 hover:bg-green-800 text-white font-extrabold py-6 rounded-2xl shadow-xl text-2xl transition-all dark:bg-yellow-500 dark:hover:bg-yellow-600 dark:text-gray-800">
             Enviar
           </button>
         </div>
@@ -320,11 +337,23 @@
       <!-- Mensagem e Relatório centralizados -->
       <div id="messageContainer" class="mt-10 mx-auto max-w-2xl text-xl"></div>
     </div>
-    <footer class="text-center text-lg text-gray-500 pb-6">© 2025 Sua Empresa</footer>
+    <footer class="text-center text-lg text-gray-500 dark:text-yellow-200 pb-6">© 2025 Sua Empresa</footer>
   </div>
+  <script>
+    // Botão de alternância modo escuro/claro
+    const btn = document.getElementById('toggleDarkMode');
+    function updateIcon() {
+      btn.innerHTML = document.documentElement.classList.contains('dark') ? '☀️' : '🌙';
+    }
+    btn.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+      updateIcon();
+    });
+    updateIcon();
+  </script>
   <script src="../components/app.js"></script>
   <script src="../pre-plantio/pre-plantio.js" defer></script>
 </body>
 </html>
-
 
