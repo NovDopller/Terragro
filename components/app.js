@@ -24,7 +24,6 @@ function handleSubmit(e) {
     window.location.href = '../index.html';
   });
 }
-
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('mainForm');
   if (form) form.addEventListener('submit', handleSubmit);
