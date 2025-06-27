@@ -5,12 +5,6 @@
   <title>Menu Principal - Relatório Agronômico</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<script>
-  if (sessionStorage.getItem('loggedIn') !== 'true') {
-    window.location.href = "login.html";
-  }
-</script>
-
 <body class="bg-gray-50 min-h-screen flex items-center justify-center p-4">
   <!-- Grande container branco -->
   <div class="w-full max-w-md bg-white rounded-lg shadow-lg p-6 space-y-6">
@@ -24,27 +18,27 @@
 
     <!-- Botões organizados verticalmente -->
     <div class="flex flex-col gap-4">
-      <a href="pre-plantio/index.html"
+      <a href="pre-plantio/pre-plantio.html"
          class="block bg-green-600 hover:bg-green-700 text-white font-semibold 
                 rounded-lg py-3 text-center transition">
         Pré-Plantio
       </a>
-      <a href="plantio/index.html"
+      <a href="plantio/plantio.html"
          class="block bg-green-600 hover:bg-green-700 text-white font-semibold 
                 rounded-lg py-3 text-center transition">
         Plantio
       </a>
-      <a href="contagem-estande/index.html"
+      <a href="contagem-estande/contagem.html"
          class="block bg-green-600 hover:bg-green-700 text-white font-semibold 
                 rounded-lg py-3 text-center transition">
         Contagem de Estande
       </a>
-      <a href="monitoramento-mip-mid/index.html"
+      <a href="monitoramento-mip-mid/monitoramento.html"
          class="block bg-green-600 hover:bg-green-700 text-white font-semibold 
                 rounded-lg py-3 text-center transition">
         Monitoramento MIP/MID
       </a>
-      <a href="pre-colheita/index.html"
+      <a href="pre-colheita/pre-colheita.html"
          class="block bg-green-600 hover:bg-green-700 text-white font-semibold 
                 rounded-lg py-3 text-center transition">
         Pré-Colheita

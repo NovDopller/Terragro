@@ -6,12 +6,6 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style src="../components/style.css"></style>
 </head>
-<script>
-  if (sessionStorage.getItem('loggedIn') !== 'true') {
-    window.location.href = "login.html";
-  }
-</script>
-
 <body class="bg-gradient-to-br from-green-100 via-white to-green-200 min-h-screen flex items-center justify-center p-2">
   <div class="w-full max-w-4xl rounded-3xl shadow-2xl bg-white/90 backdrop-blur-md border-2 border-green-200">
     <!-- Cabeçalho -->
@@ -28,6 +22,7 @@
       </div>
     </div>
 
+    <!-- Formulário estilizado em cards -->
     <div class="p-12 space-y-10">
       <form id="mainForm" class="space-y-10">
 
@@ -320,5 +315,4 @@
   </script>
 </body>
 </html>
-
 
