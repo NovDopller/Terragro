@@ -332,6 +332,10 @@
             accept="image/*"
             multiple>
         </div>
+        <input type="hidden" name="latitude" id="latitude">
+        <input type="hidden" name="longitude" id="longitude">
+        <div id="geo-status" class="text-center text-red-600 font-bold mb-4"></div>
+        
 
         <!-- Botão Enviar -->
         <div class="pt-6">
@@ -340,8 +344,9 @@
             Enviar
           </button>
         </div>
-      </form>
 
+      </form>
+      
       <div id="messageContainer" class="mt-10 mx-auto max-w-2xl text-xl"></div>
     </div>
     <footer class="text-center text-lg text-gray-500 pb-6">© 2025 TERRAGRICOLA COMERCIO DE FERTILIZANTES LTDA</footer>

@@ -152,12 +152,12 @@
                 <label for="urgenciaDoencas" class="block text-gray-600 text-lg">Urgência (1–5):</label>
                 <select id="urgenciaDoencas" name="urgenciaDoencas"
                   class="w-full border-2 border-gray-700 rounded-2xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition text-lg">
-                  <option selected hidden>Selecione a urgência</option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
+                  <option value="" selected hidden>Selecione a urgência</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
                 </select>
               </div>
             </div>
@@ -199,12 +199,12 @@
                 <label for="urgenciaInsetos" class="block text-gray-600 text-lg">Urgência (1–5):</label>
                 <select id="urgenciaInsetos" name="urgenciaInsetos"
                   class="w-full border-2 border-gray-700 rounded-2xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition text-lg">
-                  <option selected hidden>Selecione a urgência</option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
+                  <option value="" selected hidden>Selecione a urgência</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
                 </select>
               </div>
             </div>
@@ -246,12 +246,12 @@
                 <label for="urgenciaDaninhas" class="block text-gray-600 text-lg">Urgência (1–5):</label>
                 <select id="urgenciaDaninhas" name="urgenciaDaninhas"
                   class="w-full border-2 border-gray-700 rounded-2xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-black transition text-lg">
-                  <option selected hidden>Selecione a urgência</option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
+                  <option value="" selected hidden>Selecione a urgência</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
                 </select>
               </div>
             </div>
@@ -275,7 +275,9 @@
               placeholder="Contagem 3">
           </div>
         </div>
-
+        <input type="hidden" name="latitude" id="latitude">
+        <input type="hidden" name="longitude" id="longitude">
+        <div id="geo-status"></div>
         <!-- Botão Enviar -->
         <div class="pt-6">
           <button type="submit"
@@ -289,7 +291,6 @@
     <footer class="text-center text-lg text-gray-500 pb-6">© 2025 TERRAGRICOLA COMERCIO DE FERTILIZANTES LTDA</footer>
   </div>
   <script src="../contagem-estande/contagem.js"></script>
-  <script src="../components/app.js" defer></script>
 </body>
 </html>
 

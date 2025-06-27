@@ -22,7 +22,6 @@
       </div>
     </div>
 
-    <!-- Formulário estilizado padrão ampliado e bordas escuras -->
     <div class="p-12 space-y-10">
       <form id="mainForm" class="space-y-10">
 
@@ -159,6 +158,18 @@
             multiple>
         </div>
 
+        <!-- Campos de geolocalização e status -->
+        <form id="formMonitoramentoMipMid">
+        <input type="text" name="latitude" />
+        <input type="text" name="longitude" />
+        <input type="text" name="urgenciaInsetosMip" />
+        <input type="text" name="nome_talhao" />
+        <textarea name="observacoes"></textarea>
+        <!-- Aqui só seu botão de enviar já existente -->
+      </form>
+
+
+
         <!-- Botão Enviar -->
         <div class="pt-6">
           <button type="submit"
@@ -172,6 +183,5 @@
     <footer class="text-center text-lg text-gray-500 pb-6">© 2025 TERRAGRICOLA COMERCIO DE FERTILIZANTES LTDA</footer>
   </div>
   <script src="../plantio/plantio.js"></script>
-  <script src="../components/app.js"></script>
 </body>
 </html>

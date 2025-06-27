@@ -1,35 +1,26 @@
-    document.getElementById('anexoFotosPlantio').addEventListener('change', function(e) {
-      let label = document.getElementById('anexoFotosPlantio-nome');
-      if (this.files.length > 0) {
-        let nomes = Array.from(this.files).map(f => f.name).join(', ');
-        label.textContent = nomes;
-      } else {
-        label.textContent = 'Nenhum arquivo selecionado';
-      }
+document.getElementById('formMonitoramentoMipMid').addEventListener('submit', function(event) {
+  event.preventDefault(); // evita o reload da página
+
+  const dados = {
+    latitude: this.latitude.value,
+    longitude: this.longitude.value,
+    urgenciaInsetosMip: this.urgenciaInsetosMip.value,
+    nome_talhao: this.nome_talhao.value,
+    observacoes: this.observacoes.value
+  };
+
+  fetch('/api/salvar_monitoramento_mip_mid', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(dados)
+  })
+  .then(res => res.json())
+  .then(data => {
+    alert(data.msg); // mensagem do backend
+  })
+  .catch(err => {
+    alert('Erro ao salvar monitoramento');
+    console.error(err);
   });
-    document.getElementById('mainForm').addEventListener('submit', async function(event) {
-    event.preventDefault(); // Evita recarregar a página
-
-    // Pegando os valores do formulário
-    const formData = new FormData(event.target);
-
-    // Transformando em objeto para JSON
-    const data = {};
-    formData.forEach((value, key) => {
-        data[key] = value;
-    });
-
-    // Enviando para o backend Flask
-    try {
-        const response = await fetch('/api/plantio', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(data)
-        });
-        const result = await response.json();
-
-        document.getElementById('messageContainer').innerText = result.msg || 'Enviado com sucesso!';
-    } catch (error) {
-        document.getElementById('messageContainer').innerText = 'Erro ao enviar!';
-    }
 });
+
