@@ -27,3 +27,23 @@
         label.textContent = 'Nenhum arquivo selecionado';
       }
     });
+    document.getElementById('mainForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const data = {};
+    formData.forEach((value, key) => {
+        data[key] = value;
+    });
+
+    try {
+        const response = await fetch('/api/monitoramento-mip-mid', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        });
+        const result = await response.json();
+        document.getElementById('messageContainer').innerText = result.msg || 'Enviado com sucesso!';
+    } catch (error) {
+        document.getElementById('messageContainer').innerText = 'Erro ao enviar!';
+    }
+    });

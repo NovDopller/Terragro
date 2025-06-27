@@ -1,29 +1,41 @@
-    // Função para mostrar/esconder detalhes condicionais (insetos, daninhas, doenças)
-    function setupDetalhes(nomeCampo, idDetalhe) {
-      document.querySelectorAll('input[name="' + nomeCampo + '"]').forEach(el => {
-        el.addEventListener('change', function() {
-          document.getElementById(idDetalhe).classList.toggle('hidden', this.value !== 'Sim');
-          // Limpa ao esconder
-          if(this.value !== 'Sim') {
-            document.getElementById(idDetalhe).querySelectorAll('input, select').forEach(field => {
-              if (field.type === 'text' || field.type === 'number') field.value = '';
-              if (field.tagName.toLowerCase() === 'select') field.selectedIndex = 0;
-            });
-          }
-        });
+    // Exibir/ocultar detalhes dos cards Sim/Não
+    document.querySelectorAll('input[type=radio][value="Sim"]').forEach(function(radio) {
+      radio.addEventListener('change', function() {
+        let detalhes = this.closest('.bg-white').querySelector('.space-y-6');
+        if (detalhes) detalhes.classList.remove('hidden');
       });
-    }
-    setupDetalhes('insetosPresentes', 'insetos-detalhes');
-    setupDetalhes('daninhasPresentesMip', 'daninhas-detalhes');
-    setupDetalhes('doencasPresentesMip', 'doencas-detalhes');
+    });
+    document.querySelectorAll('input[type=radio][value="Não"]').forEach(function(radio) {
+      radio.addEventListener('change', function() {
+        let detalhes = this.closest('.bg-white').querySelector('.space-y-6');
+        if (detalhes) detalhes.classList.add('hidden');
+      });
+    });
+    document.getElementById('mainForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const data = {};
 
-    // Anexos
-    document.getElementById('anexoMipMid').addEventListener('change', function(e) {
-      let label = document.getElementById('anexoMipMid-nome');
-      if (this.files.length > 0) {
-        let nomes = Array.from(this.files).map(f => f.name).join(', ');
-        label.textContent = nomes;
-      } else {
-        label.textContent = 'Nenhum arquivo selecionado';
-      }
+    // Pega múltiplos checkboxes de condições climáticas e junta em string
+    const condicoes = [];
+    formData.forEach((value, key) => {
+        if (key === "condicoesClimaticas") {
+            condicoes.push(value);
+        } else {
+            data[key] = value;
+        }
+    });
+    data.condicoesClimaticas = condicoes.join(', ');
+
+    try {
+        const response = await fetch('/api/contagem-estande', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        });
+        const result = await response.json();
+        document.getElementById('messageContainer').innerText = result.msg || 'Enviado com sucesso!';
+    } catch (error) {
+        document.getElementById('messageContainer').innerText = 'Erro ao enviar!';
+    }
     });
