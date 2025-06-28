@@ -98,36 +98,15 @@ window.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// SUBMISSÃO DO FORMULÁRIO PRINCIPAL
+// SUBMISSÃO DO FORMULÁRIO PRINCIPAL (agora com FormData, para arquivos!)
 document.getElementById('mainForm').addEventListener('submit', async function(event) {
   event.preventDefault(); // ESSENCIAL: impede o reload!
 
   const formData = new FormData(event.target);
-  const data = {};
-  formData.forEach((value, key) => {
-    data[key] = value;
-  });
-
-  // --- AJUSTE DO VALOR DE pmsPP ---
-  if ('pmsPP' in data) {
-    if (data.pmsPP === "Sim") {
-      data.pmsPP = 1;
-    } else if (data.pmsPP === "Não") {
-      data.pmsPP = 0;
-    } else if (!data.pmsPP) {
-      data.pmsPP = null;
-    } else {
-      data.pmsPP = parseFloat(data.pmsPP.replace(',', '.'));
-      if (isNaN(data.pmsPP)) data.pmsPP = null;
-    }
-  }
-  // --- FIM DO AJUSTE ---
 
   // Checagem dos campos de localização
-  const latVal = data.latitude;
-  const lonVal = data.longitude;
-
-  // Só aceita valor se for número válido (não vazio, não undefined, não null)
+  const latVal = formData.get('latitude');
+  const lonVal = formData.get('longitude');
   if (
     typeof latVal === "undefined" || typeof lonVal === "undefined" ||
     latVal === "" || lonVal === "" ||
@@ -138,14 +117,13 @@ document.getElementById('mainForm').addEventListener('submit', async function(ev
     return;
   }
 
-  // Opcional: mostrar os valores no console para debug
+  // Debug (opcional)
   console.log("Latitude:", latVal, "Longitude:", lonVal);
 
   try {
     const response = await fetch('/api/pre-plantio', {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(data)
+      body: formData // IMPORTANTE: NÃO colocar headers!
     });
     const result = await response.json();
     document.getElementById('messageContainer').innerText = result.msg || 'Enviado com sucesso!';
@@ -153,3 +131,4 @@ document.getElementById('mainForm').addEventListener('submit', async function(ev
     document.getElementById('messageContainer').innerText = 'Erro ao enviar!';
   }
 });
+

@@ -45,14 +45,6 @@
       </a>
     </div>
   </div>
-  <!-- Script para exibir relatório salvo -->
-<!-- Relatório Final: injeta o HTML salvo em localStorage -->
-    <script>
-      const report = localStorage.getItem('lastReport');
-      if (report) {
-        document.getElementById('reportContainer').innerHTML = report;
-        localStorage.removeItem('lastReport');
-      }
-    </script>
+<script src="components/app.js"></script>
 </body>
 </html>

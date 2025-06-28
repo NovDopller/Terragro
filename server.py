@@ -12,12 +12,13 @@ conexao = mysql.connector.connect(
 
 @app.route('/api/salvar', methods=['POST'])
 def salvar():
-    data = request.get_json()
+    data = request.form
     return jsonify({"msg": "Dados salvos com sucesso!"})
 
 @app.route('/api/plantio', methods=['POST'])
+
 def salvar_plantio():
-    data = request.get_json()
+    data = request.form
     cursor = conexao.cursor()
     try:
         cultura = data.get('culturaPlantio')
@@ -40,7 +41,6 @@ def salvar_plantio():
         profundidade = data.get('profundidadePlantio')
         info_adicional = data.get('info_adicional_plantio')
 
-        # --- AQUI ESTÁ O AJUSTE! ---
         latitude = data.get('latitude')
         if not latitude or latitude in ("", "null"):
             latitude = None
@@ -52,9 +52,6 @@ def salvar_plantio():
             longitude = None
         else:
             longitude = float(longitude)
-
-        print("LATITUDE NO BACKEND:", latitude, type(latitude))
-        print("LONGITUDE NO BACKEND:", longitude, type(longitude))
 
         cursor.execute("""
             INSERT INTO plantio (cultura, variedade, pms, umidade, tipo, profundidade, info_adicional, latitude, longitude)
@@ -69,18 +66,18 @@ def salvar_plantio():
     finally:
         cursor.close()
 
-
 @app.route('/api/pre-plantio', methods=['POST'])
-def salvar_pre_plantio():
-    data = request.get_json()
+def pre_plantio():
+    data = request.form
     cursor = conexao.cursor()
     try:
-        area_total_talhao = data.get('areaTotalTalhao')
-        valor = data.get('hectaresPlantadosPP')
+        # Dados do formulário
+        area_total_talhao = request.form.get('areaTotalTalhao')
+        valor = request.form.get('hectaresPlantadosPP')
         hectares_plantados = float(valor) if valor not in (None, "", "null") else None
-        cultura = data.get('culturaPP')
-        variedade = data.get('variedadePP')
-        pms = data.get('pmsPP')
+        cultura = request.form.get('culturaPP')
+        variedade = request.form.get('variedadePP')
+        pms = request.form.get('pmsPP')
         if pms == "Sim":
             pms = 1.0
         elif pms == "Não":
@@ -93,40 +90,35 @@ def salvar_pre_plantio():
             except Exception:
                 pms = None
 
-        data_prevista_plantio = data.get('dataPrevPlantioPP')
-        if not data_prevista_plantio or data_prevista_plantio in ("", "null"):
-            data_prevista_plantio = None
+        data_prevista_plantio = request.form.get('dataPrevPlantioPP') or None
+        data_ultima_analise_solo = request.form.get('dataUltAnaliseSoloPP') or None
+        dosagem_calagem = request.form.get('dosagemCalagemPP')
+        calagem = request.form.get('calagemPP')
+        historico_solo = request.form.get('historicoSoloPP')
+        adubos_anteriores = request.form.get('adubosAnterioresPP')
+        adubacao_ano = request.form.get('adubacaoAnoPP')
+        insetos = request.form.get('insetosPP')
+        insetos_qual = request.form.get('insetosQualPP')
+        incidencia_insetos = request.form.get('incidenciaInsetosPP')
+        urgencia_insetos = request.form.get('urgenciaInsetosPP')
+        daninhas = request.form.get('daninhasPP')
+        daninhas_qual = request.form.get('daninhasQualPP')
+        incidencia_daninhas = request.form.get('incidenciaDaninhasPP')
+        urgencia_daninhas = request.form.get('urgenciaDaninhasPP')
+        info_adicional = request.form.get('info_adicional_pplantio')
 
-        data_ultima_analise_solo = data.get('dataUltAnaliseSoloPP')
-        if not data_ultima_analise_solo or data_ultima_analise_solo in ("", "null"):
-            data_ultima_analise_solo = None
+        latitude = request.form.get('latitude')
+        latitude = float(latitude) if latitude not in (None, "", "null") else None
+        longitude = request.form.get('longitude')
+        longitude = float(longitude) if longitude not in (None, "", "null") else None
 
-        dosagem_calagem = data.get('dosagemCalagemPP')
-        calagem = data.get('calagemPP')
-        historico_solo = data.get('historico_solo')
-        adubos_anteriores = data.get('adubos_anteriores')
-        adubacao_ano = data.get('adubacaoAnoPP')
-        insetos = data.get('insetosPP')
-        insetos_qual = data.get('insetosQualPP')
-        incidencia_insetos = data.get('incidenciaInsetosPP')
-        urgencia_insetos = data.get('urgenciaInsetosPP')
-        daninhas = data.get('daninhasPP')
-        daninhas_qual = data.get('daninhasQualPP')
-        incidencia_daninhas = data.get('incidenciaDaninhasPP')
-        urgencia_daninhas = data.get('urgenciaDaninhasPP')
-        info_adicional = data.get('info_adicional_pplantio')
+        # Arquivos enviados
+        analise_file = request.files.get('anexoAnaliseSoloPP')
+        fotos = request.files.getlist('anexoFotosPlantio')
 
-        latitude = data.get('latitude')
-        if not latitude or latitude in ("", "null"):
-            latitude = None
-        else:
-            latitude = float(latitude)
-
-        longitude = data.get('longitude')
-        if not longitude or longitude in ("", "null"):
-            longitude = None
-        else:
-            longitude = float(longitude)
+        # (Opcional) Pega só nomes dos arquivos enviados
+        analise_file_name = analise_file.filename if analise_file else None
+        fotos_names = [f.filename for f in fotos if f] if fotos else []
 
         cursor.execute("""
             INSERT INTO pre_plantio (
@@ -195,9 +187,10 @@ def salvar_pre_colheita():
 
 @app.route('/api/salvar_monitoramento_mip_mid', methods=['POST'])
 def salvar_monitoramento_mip_mid():
-    data = request.get_json()
+    data = request.form  # Agora pega os dados enviados via FormData!
     cursor = conexao.cursor()
     try:
+        # Os campos continuam iguais:
         fase_cultura = data.get('faseCultura')
         precipitacao7d = data.get('precipitacao7d')
         precipitacao7d = float(precipitacao7d.replace(",", ".") or 0) if precipitacao7d not in (None, "", "null") else None
@@ -245,6 +238,7 @@ def salvar_monitoramento_mip_mid():
         return jsonify({"msg": f"Erro ao salvar: {str(e)}"}), 500
     finally:
         cursor.close()
+
 
 @app.route('/api/contagem-estande', methods=['POST'])
 def salvar_contagem_estande():
@@ -315,7 +309,7 @@ def salvar_contagem_estande():
         return jsonify({"msg": f"Erro ao salvar: {str(e)}"}), 500
     finally:
         cursor.close()
-from flask import request, jsonify
 
 if __name__ == '__main__':
     app.run(debug=True)
+
