@@ -5,54 +5,53 @@
   <title>Menu Principal - Relatório Agronômico</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-50 min-h-screen flex items-center justify-center p-4">
+<body class="bg-gray-50 min-h-screen flex items-center justify-center p-8">
   <!-- Grande container branco -->
-  <div class="w-full max-w-md bg-white rounded-lg shadow-lg p-6 space-y-6">
+  <div class="w-full max-w-2xl bg-white rounded-3xl shadow-2xl p-12 space-y-10">
     <!-- Logo centralizado -->
-    <div class="flex justify-center mb-4">
-      <img src="Logo.png" alt="Logo da Empresa" class="h-28 object-contain">
+    <div class="flex justify-center mb-8">
+      <img src="Logo.png" alt="Logo da Empresa" class="h-44 object-contain">
     </div>
 
     <!-- Relatório salvo (se houver) -->
-    <div id="reportContainer"></div>
+    <div id="reportContainer" class="text-xl"></div>
 
     <!-- Botões organizados verticalmente -->
-    <div class="flex flex-col gap-4">
+    <div class="flex flex-col gap-8">
       <a href="pre-plantio/pre-plantio.html"
          class="block bg-green-600 hover:bg-green-700 text-white font-semibold 
-                rounded-lg py-3 text-center transition">
+                rounded-2xl py-6 text-2xl text-center transition-all duration-200 shadow-lg">
         Pré-Plantio
       </a>
       <a href="plantio/plantio.html"
          class="block bg-green-600 hover:bg-green-700 text-white font-semibold 
-                rounded-lg py-3 text-center transition">
+                rounded-2xl py-6 text-2xl text-center transition-all duration-200 shadow-lg">
         Plantio
       </a>
       <a href="contagem-estande/contagem.html"
          class="block bg-green-600 hover:bg-green-700 text-white font-semibold 
-                rounded-lg py-3 text-center transition">
+                rounded-2xl py-6 text-2xl text-center transition-all duration-200 shadow-lg">
         Contagem de Estande
       </a>
       <a href="monitoramento-mip-mid/monitoramento.html"
          class="block bg-green-600 hover:bg-green-700 text-white font-semibold 
-                rounded-lg py-3 text-center transition">
+                rounded-2xl py-6 text-2xl text-center transition-all duration-200 shadow-lg">
         Monitoramento MIP/MID
       </a>
       <a href="pre-colheita/pre-colheita.html"
          class="block bg-green-600 hover:bg-green-700 text-white font-semibold 
-                rounded-lg py-3 text-center transition">
+                rounded-2xl py-6 text-2xl text-center transition-all duration-200 shadow-lg">
         Pré-Colheita
       </a>
     </div>
   </div>
   <!-- Script para exibir relatório salvo -->
-<!-- Relatório Final: injeta o HTML salvo em localStorage -->
-    <script>
-      const report = localStorage.getItem('lastReport');
-      if (report) {
-        document.getElementById('reportContainer').innerHTML = report;
-        localStorage.removeItem('lastReport');
-      }
-    </script>
+  <script>
+    const report = localStorage.getItem('lastReport');
+    if (report) {
+      document.getElementById('reportContainer').innerHTML = report;
+      localStorage.removeItem('lastReport');
+    }
+  </script>
 </body>
 </html>
